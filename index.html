@@ -1,133 +1,132 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Double J Carpentry – Quality residential carpentry services in the UK, run by Jimmy & Jay Scanlon." />
-  <meta property="og:title" content="Double J Carpentry" />
-  <meta property="og:description" content="Modern and reliable residential carpentry by Jimmy & Jay Scanlon." />
-  <meta property="og:image" content="logo-placeholder.png" />
-  <meta property="og:url" content="https://www.doublejcarpentry.co.uk" />
-  <title>Double J Carpentry</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #111;
-    }
-    header {
-      background-color: #000;
-      color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #ccc;
-    }
-    .hero {
-      background: url('Screenshot_20250616_194503_Chrome.jpg') center/cover no-repeat;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-shadow: 0 0 10px #000;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 3em;
-    }
-    section {
-      padding: 60px 40px;
-    }
-    section h2 {
-      margin-bottom: 20px;
-      font-size: 2em;
-      border-bottom: 2px solid #000;
-      display: inline-block;
-    }
-    .gallery-placeholder, .services-list, .about-text, .contact-info {
-      margin-top: 20px;
-    }
-    .footer {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2em;
-      }
-      nav {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">Double J Carpentry</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>  <div class="hero">
-    <h1>Welcome to Double J Carpentry</h1>
-  </div>  <section id="about">
-    <h2>About Us</h2>
-    <div class="about-text">
-      <p>Double J Carpentry is a small, skilled team led by Jimmy & Jay Scanlon, offering quality residential carpentry solutions across the UK.</p>
-    </div>
-  </section>  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services-list">
-      <ul>
-        <li>Custom woodwork</li>
-        <li>Kitchen and bathroom fitting</li>
-        <li>Flooring and skirting installation</li>
-        <li>Doors, staircases, and built-in wardrobes</li>
-        <li>And more – tailored to your needs</li>
-      </ul>
-    </div>
-  </section>  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery-placeholder">
-      <p>Photos coming soon. Watch this space!</p>
-    </div>
-  </section>  <section id="contact">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
-      <p>Phone: <a href="tel:+442036420880">020 3642 0880</a></p>
-    </div>
-  </section>  <footer class="footer">
-    <p>&copy; 2025 Double J Carpentry. All rights reserved.</p>
-  </footer>  <script>
-    document.querySelectorAll('nav a').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        document.getElementById(targetId).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script></body>
+<!DOCTYPE html><html lang="en">  <head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <meta name="description" content="Double J Carpentry – Quality residential carpentry services in the UK, run by Jimmy & Jay Scanlon." />  
+  <meta property="og:title" content="Double J Carpentry" />  
+  <meta property="og:description" content="Modern and reliable residential carpentry by Jimmy & Jay Scanlon." />  
+  <meta property="og:image" content="Screenshot_20250616_194503_Chrome.jpg" />  
+  <meta property="og:url" content="https://www.doublejcarpentry.co.uk" />  
+  <title>Double J Carpentry</title>  
+  <style>  
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+    }  
+    body {  
+      font-family: Arial, sans-serif;  
+      background-color: #fff;  
+      color: #111;  
+    }  
+    header {  
+      background-color: #000;  
+      color: #fff;  
+      padding: 20px 40px;  
+      display: flex;  
+      justify-content: space-between;  
+      align-items: center;  
+    }  
+    nav a {  
+      color: #fff;  
+      text-decoration: none;  
+      margin-left: 20px;  
+      transition: color 0.3s;  
+    }  
+    nav a:hover {  
+      color: #ccc;  
+    }  
+    .hero {  
+      background: url('Screenshot_20250616_194503_Chrome.jpg') center/cover no-repeat;  
+      height: 80vh;  
+      display: flex;  
+      align-items: center;  
+      justify-content: center;  
+      color: #fff;  
+      text-shadow: 0 0 10px #000;  
+      text-align: center;  
+    }  
+    .hero h1 {  
+      font-size: 3em;  
+    }  
+    section {  
+      padding: 60px 40px;  
+    }  
+    section h2 {  
+      margin-bottom: 20px;  
+      font-size: 2em;  
+      border-bottom: 2px solid #000;  
+      display: inline-block;  
+    }  
+    .gallery-placeholder, .services-list, .about-text, .contact-info {  
+      margin-top: 20px;  
+    }  
+    .footer {  
+      background: #000;  
+      color: #fff;  
+      text-align: center;  
+      padding: 20px;  
+    }  
+    @media (max-width: 768px) {  
+      .hero h1 {  
+        font-size: 2em;  
+      }  
+      nav {  
+        display: flex;  
+        flex-direction: column;  
+        align-items: flex-end;  
+      }  
+    }  
+  </style>  
+</head>  
+<body>  
+  <header>  
+    <div class="logo">Double J Carpentry</div>  
+    <nav>  
+      <a href="#about">About</a>  
+      <a href="#services">Services</a>  
+      <a href="#gallery">Gallery</a>  
+      <a href="#contact">Contact</a>  
+    </nav>  
+  </header>  <div class="hero">  
+    <h1>Welcome to Double J Carpentry</h1>  
+  </div>  <section id="about">  
+    <h2>About Us</h2>  
+    <div class="about-text">  
+      <p>Double J Carpentry is a small, skilled team led by Jimmy & Jay Scanlon, offering quality residential carpentry solutions across the UK.</p>  
+    </div>  
+  </section>  <section id="services">  
+    <h2>Our Services</h2>  
+    <div class="services-list">  
+      <ul>  
+        <li>Custom woodwork</li>  
+        <li>Kitchen and bathroom fitting</li>  
+        <li>Flooring and skirting installation</li>  
+        <li>Doors, staircases, and built-in wardrobes</li>  
+        <li>And more – tailored to your needs</li>  
+      </ul>  
+    </div>  
+  </section>  <section id="gallery">  
+    <h2>Gallery</h2>  
+    <div class="gallery-placeholder">  
+      <p>Photos coming soon. Watch this space!</p>  
+    </div>  
+  </section>  <section id="contact">  
+    <h2>Contact Us</h2>  
+    <div class="contact-info">  
+      <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>  
+      <p>Phone: <a href="tel:+442036420880">020 3642 0880</a></p>  
+    </div>  
+  </section>  <footer class="footer">  
+    <p>&copy; 2025 Double J Carpentry. All rights reserved.</p>  
+  </footer>  <script>  
+    document.querySelectorAll('nav a').forEach(anchor => {  
+      anchor.addEventListener('click', function (e) {  
+        e.preventDefault();  
+        const targetId = this.getAttribute('href').substring(1);  
+        document.getElementById(targetId).scrollIntoView({  
+          behavior: 'smooth'  
+        });  
+      });  
+    });  
+  </script></body>  
 </html>
