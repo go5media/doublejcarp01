@@ -1,775 +1,754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Double J Carpentry</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-<style>
-  /* ==== Color Palette & Base ==== */
-  :root {
-    --forest-orange: #d35400; /* deep forest orange */
-    --text-light: #f9f7f1; /* off-white for contrast */
-    --overlay-gray: rgba(0, 0, 0, 0.7);
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Double J Carpentry</title>
+  <style>
+    /* ===== COLORS ===== */
+    :root {
+      /* Forest Orange palette */
+      --forest-orange: #b14e16; /* main warm deep orange */
+      --forest-orange-dark: #8a3b0f; /* darker accent */
+      --forest-orange-light: #d16f2a; /* lighter accent */
+      --background-light: #fff8f2; /* very light warm background */
+      --text-dark: #3a2c23;
+      --card-bg: #fff3e6;
+      --overlay-bg: rgba(58, 44, 35, 0.8);
+      --button-hover: #a44611;
+      --button-bg: var(--forest-orange);
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    /* ===== GLOBAL STYLES ===== */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--forest-orange);
-    color: var(--text-light);
-    line-height: 1.6;
-    min-height: 100vh;
-    scroll-behavior: smooth;
-  }
+    a {
+      color: var(--forest-orange-dark);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
 
-  a {
-    color: var(--text-light);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  a:hover,
-  a:focus {
-    text-decoration: underline;
-  }
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--forest-orange);
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 700;
+      user-select: none;
+    }
 
-  /* ==== NAVIGATION ==== */
-  nav {
-    background: var(--forest-orange);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    height: 60px;
-    border-bottom: 2px solid #a24000;
-  }
+    /* NAVIGATION */
+    nav {
+      position: relative;
+    }
 
-  nav .brand {
-    font-weight: 700;
-    font-size: 1.4rem;
-    user-select: none;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-
-  nav ul li {
-    user-select: none;
-  }
-
-  nav ul li a {
-    font-weight: 500;
-    font-size: 1rem;
-  }
-
-  /* BURGER MENU */
-  .burger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .burger div {
-    width: 100%;
-    height: 3px;
-    background: var(--text-light);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  .burger.open div:nth-child(1) {
-    transform: rotate(45deg);
-    top: 8px;
-    position: relative;
-  }
-
-  .burger.open div:nth-child(2) {
-    opacity: 0;
-  }
-
-  .burger.open div:nth-child(3) {
-    transform: rotate(-45deg);
-    top: -8px;
-    position: relative;
-  }
-
-  /* MOBILE MENU */
-  @media (max-width: 768px) {
+    /* Desktop nav */
     nav ul {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      background: var(--forest-orange);
-      height: calc(100vh - 60px);
-      width: 200px;
-      flex-direction: column;
-      padding-top: 2rem;
-      gap: 1.5rem;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li {
+      font-weight: 600;
+    }
+    nav ul li a {
+      color: white;
+      font-size: 1rem;
+      padding: 0.3rem 0;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--forest-orange-light);
     }
 
-    nav ul.open {
-      transform: translateX(0);
-    }
-
+    /* MOBILE MENU BUTTON */
     .burger {
+      display: none;
+      width: 28px;
+      height: 22px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1100;
+    }
+    .burger span,
+    .burger span::before,
+    .burger span::after {
+      display: block;
+      background-color: white;
+      height: 3px;
+      border-radius: 2px;
+      position: absolute;
+      width: 100%;
+      transition: all 0.35s ease;
+    }
+    .burger span {
+      top: 50%;
+      margin-top: -1.5px;
+    }
+    .burger span::before {
+      content: "";
+      top: -8px;
+    }
+    .burger span::after {
+      content: "";
+      bottom: -8px;
+    }
+    /* Transform burger into X when active */
+    .burger.active span {
+      background-color: transparent;
+    }
+    .burger.active span::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+    .burger.active span::after {
+      transform: rotate(-45deg);
+      bottom: 0;
+    }
+
+    /* MOBILE NAV MENU */
+    nav.mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 250px;
+      background-color: var(--forest-orange);
+      display: flex;
+      flex-direction: column;
+      padding-top: 5rem;
+      transition: right 0.35s ease;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+      z-index: 1050;
+    }
+    nav.mobile-menu.open {
+      right: 0;
+    }
+    nav.mobile-menu ul {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-left: 2rem;
+    }
+    nav.mobile-menu ul li a {
+      font-size: 1.2rem;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    section.visible {
+      opacity: 1;
+    }
+
+    /* ===== SERVICES ===== */
+    #services h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid var(--forest-orange);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(177, 78, 22, 0.3);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(177, 78, 22, 0.6);
+      outline: none;
+    }
+    .service-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--forest-orange);
+    }
+    .service-card-content {
+      padding: 1rem 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      color: var(--forest-orange-dark);
+      font-weight: 700;
+    }
+    .service-card p {
+      margin: 0;
+      flex-grow: 1;
+      color: #4a3c33;
+    }
+
+    /* ===== GALLERY ===== */
+    #gallery h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid var(--forest-orange);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(177, 78, 22, 0.3);
+      transition: transform 0.25s ease;
+    }
+    .gallery-grid img:hover,
+    .gallery-grid img:focus {
+      transform: scale(1.05);
+      outline: none;
+      box-shadow: 0 6px 15px rgba(177, 78, 22, 0.6);
+    }
+
+    /* FULLSCREEN GALLERY OVERLAY */
+    #gallery-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: var(--overlay-bg);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    #gallery-overlay.active {
       display: flex;
     }
-  }
+    #gallery-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      user-select: none;
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+    /* NAVIGATION BUTTONS */
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(177, 78, 22, 0.8);
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      padding: 0 0.5rem;
+      cursor: pointer;
+      border-radius: 4px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .gallery-nav:hover,
+    .gallery-nav:focus {
+      background-color: var(--forest-orange-dark);
+      outline: none;
+    }
+    #gallery-prev {
+      left: 10px;
+    }
+    #gallery-next {
+      right: 10px;
+    }
 
-  /* ==== SECTIONS ==== */
-  main {
-    padding-top: 70px; /* to avoid nav overlap */
-    max-width: 960px;
-    margin: 0 auto 50px;
-  }
+    /* CONTACT FORM */
+    #contact h2 {
+      font-size: 2rem;
+      border-bottom: 3px solid var(--forest-orange);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    form {
+      background-color: var(--card-bg);
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(177, 78, 22, 0.3);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--forest-orange-dark);
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 1.3rem;
+      border: 2px solid var(--forest-orange-light);
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    textarea:focus {
+      border-color: var(--forest-orange-dark);
+      outline: none;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    button[type="submit"] {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background-color: var(--button-hover);
+      outline: none;
+    }
+    /* Success/Error message */
+    #form-message {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--forest-orange-dark);
+      min-height: 1.3em;
+    }
 
-  section {
-    margin-bottom: 70px;
-    opacity: 1;
-    transition: opacity 0.6s ease;
-  }
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--forest-orange-dark);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--forest-orange-light);
+      user-select: none;
+    }
 
-  section.fade-out {
-    opacity: 0;
-  }
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 900px) {
+      main {
+        margin: 1.5rem 1rem 3rem;
+      }
+    }
 
-  h1, h2 {
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
+    @media (max-width: 600px) {
+      header {
+        padding: 1rem 1rem;
+      }
+      nav ul {
+        display: none;
+      }
+      .burger {
+        display: block;
+      }
+    }
 
-  h1 {
-    font-size: 2.6rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-    border-bottom: 3px solid #a24000;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-weight: 400;
-    font-size: 1.1rem;
-  }
-
-  button.cta {
-    background-color: #a24000;
-    color: var(--text-light);
-    border: none;
-    padding: 0.8em 1.8em;
-    font-size: 1.1rem;
-    font-weight: 700;
-    border-radius: 4px;
-    cursor: pointer;
-    user-select: none;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease;
-  }
-
-  button.cta:hover,
-  button.cta:focus {
-    background-color: #7d2f00;
-  }
-
-  /* ==== HERO ==== */
-  #hero {
-    text-align: center;
-    padding: 80px 20px 100px;
-  }
-
-  #hero p.tagline {
-    font-size: 1.3rem;
-    margin-top: 0.4rem;
-    font-style: italic;
-  }
-
-  /* ==== ABOUT US ==== */
-  #about {
-    line-height: 1.75;
-  }
-
-  /* ==== SERVICES ==== */
-  #services ul {
-    padding-left: 1.25rem;
-  }
-
-  #services ul li {
-    margin-bottom: 0.7rem;
-    font-weight: 500;
-  }
-
-  /* ==== GALLERY ==== */
-  #gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-  }
-
-  #gallery img {
-    width: 100%;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  }
-
-  #gallery img:hover,
-  #gallery img:focus {
-    transform: scale(1.05);
-    outline: 2px solid var(--text-light);
-  }
-
-  /* ==== LIGHTBOX ==== */
-  #lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: var(--overlay-gray);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    overflow: hidden;
-  }
-
-  #lightbox-overlay.active {
-    display: flex;
-  }
-
-  #lightbox-content {
-    position: relative;
-    max-width: 90vw;
-    max-height: 85vh;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-
-  #lightbox-image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  #lightbox-image-container img {
-    max-width: 100%;
-    max-height: 85vh;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    user-select: none;
-  }
-
-  /* Lightbox animation */
-  .slide-in-right {
-    animation: slideInRight 0.4s forwards;
-  }
-
-  .slide-in-left {
-    animation: slideInLeft 0.4s forwards;
-  }
-
-  @keyframes slideInRight {
-    0% { transform: translate(calc(-50% + 100%), -50%); opacity: 0; }
-    100% { transform: translate(-50%, -50%); opacity: 1; }
-  }
-
-  @keyframes slideInLeft {
-    0% { transform: translate(calc(-50% - 100%), -50%); opacity: 0; }
-    100% { transform: translate(-50%, -50%); opacity: 1; }
-  }
-
-  /* Lightbox controls */
-  #lightbox-controls {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 30px;
-  }
-
-  #lightbox-controls button {
-    background: rgba(255 255 255 / 0.3);
-    border: none;
-    color: var(--forest-orange);
-    font-weight: 700;
-    font-size: 1.6rem;
-    padding: 6px 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-
-  #lightbox-controls button:hover,
-  #lightbox-controls button:focus {
-    background: rgba(255 255 255 / 0.6);
-    outline: none;
-  }
-
-  /* Close button top right */
-  #lightbox-close {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255 255 255 / 0.3);
-    border: none;
-    color: var(--forest-orange);
-    font-weight: 700;
-    font-size: 1.6rem;
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.3s ease;
-  }
-
-  #lightbox-close:hover,
-  #lightbox-close:focus {
-    background: rgba(255 255 255 / 0.6);
-    outline: none;
-  }
-
-  /* ==== TESTIMONIALS ==== */
-  #testimonials blockquote {
-    font-style: italic;
-    border-left: 4px solid #a24000;
-    padding-left: 1rem;
-    margin: 1rem 0;
-  }
-
-  #testimonials cite {
-    display: block;
-    margin-top: 0.5rem;
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
-
-  /* ==== CONTACT ==== */
-  #contact form {
-    max-width: 480px;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  #contact label {
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  #contact input,
-  #contact textarea {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-  }
-
-  #contact input:focus,
-  #contact textarea:focus {
-    outline: 2px solid #a24000;
-  }
-
-  #contact textarea {
-    resize: vertical;
-    min-height: 90px;
-  }
-
-  #contact button[type="submit"] {
-    align-self: flex-start;
-    background-color: #a24000;
-    color: var(--text-light);
-    border: none;
-    padding: 0.7em 1.5em;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s ease;
-  }
-
-  #contact button[type="submit"]:hover,
-  #contact button[type="submit"]:focus {
-    background-color: #7d2f00;
-  }
-
-  #contact .contact-info {
-    margin-top: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  #contact .contact-info span {
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-</style>
+  </style>
 </head>
 <body>
-
-<nav role="navigation" aria-label="Primary navigation">
-  <div class="brand">Double J Carpentry</div>
-  <ul id="nav-menu">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="burger" id="burger" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</nav>
-
-<main>
-  <!-- Hero -->
-  <section id="hero" class="fade-section" tabindex="-1" aria-label="Welcome section">
+  <header>
     <h1>Double J Carpentry</h1>
-    <p class="tagline">Crafting quality woodwork with pride – a father & son team.</p>
-    <button class="cta" id="hero-cta" type="button" aria-describedby="contact">Get a Quote</button>
-  </section>
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="#services" tabindex="0">Services</a></li>
+        <li><a href="#gallery" tabindex="0">Gallery</a></li>
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
 
-  <!-- About Us -->
-  <section id="about" class="fade-section" tabindex="-1" aria-label="About us section">
-    <h2>About Us</h2>
-    <p>Double J Carpentry is a family-run carpentry business proudly owned by father and son, Jimmy and Jay Scanlon. Combining decades of experience and passion, they deliver bespoke residential carpentry solutions with craftsmanship and care.</p>
-  </section>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+      </button>
 
-  <!-- Services -->
-  <section id="services" class="fade-section" tabindex="-1" aria-label="Services section">
-    <h2>Services</h2>
-    <ul>
-      <li>Custom cabinetry and shelving</li>
-      <li>Door and window fitting</li>
-      <li>Flooring installation and repair</li>
-      <li>Staircase design and build</li>
-      <li>Wooden decking and garden structures</li>
-      <li>General residential carpentry and repairs</li>
-    </ul>
-  </section>
+      <nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <ul>
+          <li><a href="#services" tabindex="-1">Services</a></li>
+          <li><a href="#gallery" tabindex="-1">Gallery</a></li>
+          <li><a href="#contact" tabindex="-1">Contact</a></li>
+        </ul>
+      </nav>
+    </nav>
+  </header>
 
-  <!-- Gallery -->
-  <section id="gallery" class="fade-section" tabindex="-1" aria-label="Gallery section">
-    <h2>Gallery</h2>
-    <div class="gallery-grid">
-      <img src="https://picsum.photos/id/1018/400/300" alt="Custom cabinetry by Double J Carpentry" tabindex="0" />
-      <img src="https://picsum.photos/id/1025/400/300" alt="Wooden decking project" tabindex="0" />
-      <img src="https://picsum.photos/id/1031/400/300" alt="Staircase installation" tabindex="0" />
-      <img src="https://picsum.photos/id/1043/400/300" alt="Window fitting detail" tabindex="0" />
-      <img src="https://picsum.photos/id/1052/400/300" alt="Shelving unit built by Double J Carpentry" tabindex="0" />
-      <img src="https://picsum.photos/id/1060/400/300" alt="Flooring installation" tabindex="0" />
-    </div>
-  </section>
+  <main>
+    <!-- Services Section -->
+    <section id="services" tabindex="-1" aria-labelledby="services-heading">
+      <h2 id="services-heading">Our Services</h2>
+      <div class="services-grid">
+        <article class="service-card" tabindex="0" aria-label="Custom furniture service">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Handcrafted wooden furniture" loading="lazy" />
+          <div class="service-card-content">
+            <h3>Custom Furniture</h3>
+            <p>Handcrafted bespoke furniture tailored to your style and needs with premium hardwoods.</p>
+          </div>
+        </article>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="fade-section" tabindex="-1" aria-label="Testimonials section">
-    <h2>Testimonials</h2>
-    <blockquote>
-      "Jimmy and Jay did an outstanding job with our kitchen cabinets. Highly recommended!"
-      <cite>— Sarah L.</cite>
-    </blockquote>
-    <blockquote>
-      "Professional, friendly, and meticulous workmanship. We love our new decking."
-      <cite>— Mark T.</cite>
-    </blockquote>
-    <blockquote>
-      "The father and son team were punctual and communicated clearly throughout the project."
-      <cite>— Emma K.</cite>
-    </blockquote>
-  </section>
+        <article class="service-card" tabindex="0" aria-label="Home renovations service">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Wooden cabinetry renovation" loading="lazy" />
+          <div class="service-card-content">
+            <h3>Home Renovations</h3>
+            <p>Expert carpentry solutions for kitchens, bathrooms, and general home improvements.</p>
+          </div>
+        </article>
 
-  <!-- Contact -->
-  <section id="contact" class="fade-section" tabindex="-1" aria-label="Contact section">
+        <article class="service-card" tabindex="0" aria-label="Decking and outdoor structures service">
+          <img src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=400&q=80" alt="Wooden outdoor decking" loading="lazy" />
+          <div class="service-card-content">
+            <h3>Decking & Outdoor Structures</h3>
+            <p>Beautifully crafted decks, pergolas, and garden structures designed to last.</p>
+          </div>
+        </article>
+
+        <article class="service-card" tabindex="0" aria-label="Repairs and maintenance service">
+          <img src="https://images.unsplash.com/photo-1507668077129-56d0d6ac0e55?auto=format&fit=crop&w=400&q=80" alt="Carpentry repair work" loading="lazy" />
+          <div class="service-card-content">
+            <h3>Repairs & Maintenance</h3>
+            <p>Reliable repairs and upkeep to preserve and extend the life of your woodwork.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" tabindex="-1" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading">Gallery</h2>
+      <div class="gallery-grid" role="list" aria-label="Gallery of carpentry projects">
+        <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80" alt="Close up of fine wood grain on a furniture project" role="listitem" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80" alt="Beautiful finished wooden staircase" role="listitem" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1556911073-52527ac437f5?auto=format&fit=crop&w=600&q=80" alt="Modern wooden kitchen cabinetry" role="listitem" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Handcrafted wooden table in natural light" role="listitem" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664?auto=format&fit=crop&w=600&q=80" alt="Wooden pergola with climbing plants" role="listitem" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=600&q=80" alt="Outdoor wooden deck with seating" role="listitem" tabindex="0" />
+      </div>
+    </section>
+
+    <!-- Gallery fullscreen overlay -->
+    <div id="gallery-overlay" aria-modal="true" role="dialog" aria-label="Fullscreen image gallery" tabindex="-1">
+      <button class="gallery-nav" id="gallery-prev" aria-label="Previous image">&#10094;</button>
+      <img src="" alt="" />
+      <button class="gallery-nav" id="gallery-next" aria-label="Next"</button>
+
+        </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section" aria-label="Contact Double J Carpentry">
     <h2>Contact Us</h2>
-    <form id="contact-form" novalidate>
-      <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstname" required autocomplete="given-name" aria-required="true" />
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required aria-required="true"></textarea>
-
-      <button type="submit">Send Message</button>
+    <form id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="name">Name<span aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email<span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="+44 1234 567890" />
+      </div>
+      <div class="form-group">
+        <label for="message">Message<span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" rows="5" placeholder="Your message here" required aria-required="true"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" aria-label="Send message to Double J Carpentry">Send Message</button>
+      <div id="formStatus" role="alert" aria-live="polite"></div>
     </form>
-    <div class="contact-info" aria-label="Contact information">
-      <span>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></span>
-      <span>Phone: <a href="tel:+442036420880">020 3642 0880</a></span>
-    </div>
   </section>
 </main>
 
-<!-- Lightbox -->
-<div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
-  <div id="lightbox-content">
-    <button id="lightbox-close" aria-label="Close gallery">&times;</button>
-    <div id="lightbox-image-container">
-      <!-- Images inserted here dynamically -->
-    </div>
-    <div id="lightbox-controls">
-      <button id="lightbox-prev" aria-label="Previous image">&#10094;</button>
-      <button id="lightbox-next" aria-label="Next image">&#10095;</button>
-    </div>
-  </div>
-</div>
+<footer class="footer">
+  <p>&copy; 2025 Double J Carpentry. Jimmy & Jay Scanlon.</p>
+</footer>
 
 <script>
-(() => {
-  // NAVIGATION BURGER MENU
-  const burger = document.getElementById('burger');
-  const navMenu = document.getElementById('nav-menu');
+  // Sticky header burger menu toggle
+  const burger = document.querySelector('.burger');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = navMenu.querySelectorAll('a');
 
-  function toggleMenu() {
-    const isOpen = burger.classList.toggle('open');
+  burger.addEventListener('click', () => {
+    const expanded = burger.getAttribute('aria-expanded') === 'true' || false;
+    burger.setAttribute('aria-expanded', !expanded);
+    burger.classList.toggle('open');
     navMenu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', isOpen);
-  }
-
-  burger.addEventListener('click', toggleMenu);
-  burger.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleMenu();
-    }
   });
 
-  // Close menu on nav link click (mobile)
-  navMenu.querySelectorAll('a').forEach(link => {
+  navLinks.forEach(link => {
     link.addEventListener('click', () => {
+      // Close menu on nav item click
       if (navMenu.classList.contains('open')) {
-        toggleMenu();
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        navMenu.classList.remove('open');
       }
     });
   });
 
-  // FADE-IN ON SCROLL (opacity only)
-  const fadeSections = document.querySelectorAll('.fade-section');
+  // Smooth scroll behavior for nav links
+  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetID = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetID);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
-  function handleFadeOnScroll() {
-    const windowBottom = window.innerHeight + window.scrollY;
-    fadeSections.forEach(section => {
-      if (windowBottom > section.offsetTop + 100) {
-        section.classList.remove('fade-out');
+  // Section fade in/out on scroll with IntersectionObserver
+  const sections = document.querySelectorAll('.section');
+  const options = {
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       } else {
-        section.classList.add('fade-out');
+        entry.target.classList.remove('visible');
       }
     });
-  }
+  }, options);
 
-  // Initial state: add fade-out class to all fade sections (hidden)
-  fadeSections.forEach(section => section.classList.add('fade-out'));
-  handleFadeOnScroll();
-
-  window.addEventListener('scroll', handleFadeOnScroll);
-
-  // HERO CTA BUTTON SCROLL TO CONTACT
-  const heroCta = document.getElementById('hero-cta');
-  const contactSection = document.getElementById('contact');
-  heroCta.addEventListener('click', () => {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-    contactSection.focus({ preventScroll: true });
+  sections.forEach(section => {
+    observer.observe(section);
   });
 
-  // GALLERY LIGHTBOX FUNCTIONALITY
-  const galleryImages = document.querySelectorAll('#gallery img');
-  const lightboxOverlay = document.getElementById('lightbox-overlay');
-  const lightboxContent = document.getElementById('lightbox-content');
-  const lightboxImageContainer = document.getElementById('lightbox-image-container');
-  const lightboxClose = document.getElementById('lightbox-close');
-  const lightboxPrev = document.getElementById('lightbox-prev');
-  const lightboxNext = document.getElementById('lightbox-next');
+  // Gallery fullscreen viewer with navigation and swipe
+  const gallery = document.querySelector('.gallery');
+  const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+  const fullscreenImage = document.getElementById('fullscreenImage');
+  const prevBtn = document.querySelector('.fullscreen-prev');
+  const nextBtn = document.querySelector('.fullscreen-next');
 
-  let currentImageIndex = 0;
+  let currentIndex = 0;
+  let galleryItems = [];
 
-  function createLightboxImage(src, alt, animationClass) {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = alt;
-    img.className = animationClass;
-    img.setAttribute('draggable', 'false');
-    return img;
-  }
+  // Populate galleryItems from gallery images
+  galleryItems = Array.from(gallery.querySelectorAll('img')).map(img => ({
+    src: img.getAttribute('src'),
+    alt: img.getAttribute('alt') || '',
+  }));
 
-  function openLightbox(index) {
-    currentImageIndex = index;
-    lightboxOverlay.classList.add('active');
-    updateLightboxImage(null, index, null);
-    // Focus the close button for accessibility
-    lightboxClose.focus();
-    document.body.style.overflow = 'hidden'; // prevent background scroll
-  }
+  function showImage(index, direction = 0) {
+    // direction: -1 for left, 1 for right, 0 for initial/no slide
+    if (index < 0) index = galleryItems.length - 1;
+    if (index >= galleryItems.length) index = 0;
+    currentIndex = index;
 
-  function updateLightboxImage(oldImg, newIndex, direction) {
-    const newImage = createLightboxImage(
-      galleryImages[newIndex].src,
-      galleryImages[newIndex].alt,
-      ''
-    );
+    // Animate slide
+    fullscreenImage.classList.add('slide-out');
+    setTimeout(() => {
+      fullscreenImage.src = galleryItems[currentIndex].src;
+      fullscreenImage.alt = galleryItems[currentIndex].alt;
+      fullscreenImage.classList.remove('slide-out');
 
-    // Remove old image with fade animation
-    if (oldImg) {
-      oldImg.classList.remove('slide-in-right', 'slide-in-left');
-      oldImg.style.position = 'absolute';
-      oldImg.style.top = '50%';
-      oldImg.style.left = '50%';
-      oldImg.style.transform = 'translate(-50%, -50%)';
-      lightboxImageContainer.appendChild(newImage);
-
-      if (direction === 'next') {
-        newImage.classList.add('slide-in-right');
-        oldImg.style.animation = 'slideInLeft 0.4s forwards reverse';
-      } else if (direction === 'prev') {
-        newImage.classList.add('slide-in-left');
-        oldImg.style.animation = 'slideInRight 0.4s forwards reverse';
+      if (direction !== 0) {
+        fullscreenImage.style.animation = direction === 1 ? 'slideInRight 0.4s forwards' : 'slideInLeft 0.4s forwards';
+      } else {
+        fullscreenImage.style.animation = 'none';
       }
+    }, 300);
+  }
 
-      setTimeout(() => {
-        if (oldImg.parentNode) oldImg.parentNode.removeChild(oldImg);
-      }, 400);
-    } else {
-      lightboxImageContainer.innerHTML = '';
-      lightboxImageContainer.appendChild(newImage);
+  // Open fullscreen on image click
+  gallery.querySelectorAll('img').forEach((img, idx) => {
+    img.addEventListener('click', () => {
+      fullscreenOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+      showImage(idx);
+      fullscreenImage.focus();
+    });
+  });
+
+  // Close fullscreen on clicking outside image
+  fullscreenOverlay.addEventListener('click', (e) => {
+    if (e.target === fullscreenOverlay) {
+      closeFullscreen();
     }
-  }
-
-  function showNextImage() {
-    const oldImg = lightboxImageContainer.querySelector('img');
-    const nextIndex = (currentImageIndex + 1) % galleryImages.length;
-    updateLightboxImage(oldImg, nextIndex, 'next');
-    currentImageIndex = nextIndex;
-  }
-
-  function showPrevImage() {
-    const oldImg = lightboxImageContainer.querySelector('img');
-    const prevIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateLightboxImage(oldImg, prevIndex, 'prev');
-    currentImageIndex = prevIndex;
-  }
-
-  galleryImages.forEach((img, idx) => {
-    img.addEventListener('click', () => openLightbox(idx));
-    img.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openLightbox(idx);
-      }
-    });
   });
 
-  lightboxClose.addEventListener('click', closeLightbox);
-  lightboxPrev.addEventListener('click', showPrevImage);
-  lightboxNext.addEventListener('click', showNextImage);
-
-  function closeLightbox() {
-    lightboxOverlay.classList.remove('active');
-    lightboxImageContainer.innerHTML = '';
+  function closeFullscreen() {
+    fullscreenOverlay.classList.remove('open');
     document.body.style.overflow = '';
-    galleryImages[currentImageIndex].focus();
   }
 
-  // Keyboard controls for lightbox
-  window.addEventListener('keydown', e => {
-    if (!lightboxOverlay.classList.contains('active')) return;
+  // Prev/Next navigation buttons
+  prevBtn.addEventListener('click', () => {
+    showImage(currentIndex - 1, -1);
+  });
 
-    if (e.key === 'Escape') {
-      closeLightbox();
+  nextBtn.addEventListener('click', () => {
+    showImage(currentIndex + 1, 1);
+  });
+
+  // Keyboard navigation for fullscreen viewer
+  document.addEventListener('keydown', (e) => {
+    if (!fullscreenOverlay.classList.contains('open')) return;
+
+    if (e.key === 'ArrowLeft') {
+      showImage(currentIndex - 1, -1);
     } else if (e.key === 'ArrowRight') {
-      showNextImage();
-    } else if (e.key === 'ArrowLeft') {
-      showPrevImage();
+      showImage(currentIndex + 1, 1);
+    } else if (e.key === 'Escape') {
+      closeFullscreen();
     }
   });
 
-  // Close lightbox if clicking outside content
-  lightboxOverlay.addEventListener('click', e => {
-    if (e.target === lightboxOverlay) {
-      closeLightbox();
-    }
+  // Swipe support on fullscreen image for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  fullscreenImage.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
   });
 
-  // CONTACT FORM SUBMISSION VIA FETCH TO HUBSPOT
-  const contactForm = document.getElementById('contact-form');
+  fullscreenImage.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture();
+  });
+
+  function handleGesture() {
+    if (touchEndX < touchStartX - 40) {
+      showImage(currentIndex + 1, 1);
+    }
+    if (touchEndX > touchStartX + 40) {
+      showImage(currentIndex - 1, -1);
+    }
+  }
+
+  // Contact form submission to HubSpot
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
 
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    formStatus.textContent = '';
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const phone = contactForm.phone.value.trim();
+    const message = contactForm.message.value.trim();
 
-    if (!contactForm.checkValidity()) {
-      contactForm.reportValidity();
+    if (!name || !email || !message) {
+      formStatus.textContent = 'Please fill in all required fields.';
+      formStatus.style.color = 'var(--accent-color)';
       return;
     }
 
-    const formData = {
+    // Replace these placeholders with your HubSpot portal ID and form ID
+    const HUBSPOT_PORTAL_ID = 'YOUR_PORTAL_ID_HERE';
+    const HUBSPOT_FORM_ID = 'YOUR_FORM_ID_HERE';
+
+    const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
+    const data = {
       fields: [
-        { name: "firstname", value: contactForm.firstname.value },
-        { name: "email", value: contactForm.email.value },
-        { name: "message", value: contactForm.message.value },
+        { name: 'firstname', value: name },
+        { name: 'email', value: email },
+        { name: 'phone', value: phone },
+        { name: 'message', value: message }
       ],
       context: {
         pageUri: window.location.href,
-        pageName: document.title,
+        pageName: document.title
       }
     };
 
     try {
-      const response = await fetch('https://api.hsforms.com/submissions/v3/integration/submit/YOUR_PORTAL_ID/YOUR_FORM_ID', {
+      const response = await fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
 
       if (response.ok) {
-        alert('Thanks for your message! We will get back to you soon.');
+        formStatus.textContent = 'Thank you for your message! We will get back to you soon.';
+        formStatus.style.color = 'var(--primary-color)';
         contactForm.reset();
       } else {
-        alert('There was a problem submitting the form. Please try again later.');
+        throw new Error('Failed to submit form');
       }
     } catch (error) {
-      alert('Network error. Please check your connection and try again.');
+      formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
+      formStatus.style.color = 'var(--accent-color)';
       console.error(error);
     }
   });
-
-})();
 </script>
 
 </body>
-</html>
+      </html>
