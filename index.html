@@ -4,156 +4,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Double J Carpentry</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              DEFAULT: '#C75B12', // Forest orange
-              dark: '#A94B0F'
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-    .fade-section {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .fade-section.visible {
-      opacity: 1;
-    }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .overlay.active {
-      display: flex;
-    }
-    .overlay img {
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .gallery-nav {
-      position: absolute;
-      bottom: 30px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      color: white;
-      font-size: 2rem;
-      user-select: none;
-    }
-    .gallery-nav span {
-      cursor: pointer;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #fff; color: #333; line-height: 1.6; }
+    header, section, footer { padding: 4rem 2rem; }
+    header { background: #e65100; color: white; position: sticky; top: 0; z-index: 999; }
+    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: auto; }
+    nav a { color: white; margin-left: 20px; text-decoration: none; font-weight: 600; }.hero { background: #ff7043; color: white; text-align: center; padding: 6rem 2rem; }
+.hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+.hero button { padding: 1rem 2rem; background: white; color: #e65100; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; }
+
+.fade-in { opacity: 0; transition: opacity 1s ease-in-out; }
+.fade-in.visible { opacity: 1; }
+
+section h2 { margin-bottom: 1rem; color: #e65100; }
+
+.gallery { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.gallery img { width: 200px; cursor: pointer; transition: transform 0.3s; border-radius: 10px; }
+.gallery img:hover { transform: scale(1.05); }
+
+#lightboxOverlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 9999; }
+#lightboxOverlay.active { display: flex; }
+#lightboxOverlay img { max-width: 90vw; max-height: 90vh; transition: transform 0.5s ease-in-out; }
+.arrow { position: absolute; bottom: 50px; font-size: 2rem; color: white; cursor: pointer; user-select: none; }
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+form input, form textarea, form button {
+  display: block; width: 100%; padding: 0.75rem; margin-bottom: 1rem;
+  border: 1px solid #ccc; border-radius: 5px;
+}
+form button { background: #e65100; color: white; border: none; cursor: pointer; font-weight: bold; }
+
+footer { background: #333; color: white; text-align: center; padding: 2rem; }
+
   </style>
 </head>
-<body class="bg-white text-gray-800">
-  <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="text-2xl font-semibold text-primary">Double J Carpentry</div>
-      <nav class="space-x-6 text-sm font-medium text-gray-700 hidden md:block">
-        <a href="#home" class="hover:text-primary">Home</a>
-        <a href="#about" class="hover:text-primary">About</a>
-        <a href="#services" class="hover:text-primary">Services</a>
-        <a href="#testimonials" class="hover:text-primary">Testimonials</a>
-        <a href="#gallery" class="hover:text-primary">Gallery</a>
-        <a href="#contact" class="hover:text-primary">Contact</a>
-      </nav>
+<body>
+  <header>
+    <nav>
+      <div><strong>Double J Carpentry</strong></div>
+      <div>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>  <section class="hero">
+    <h1>Precision. Pride. Family Craftsmanship.</h1>
+    <button>Get a Free Quote</button>
+  </section>  <section id="about" class="fade-in">
+    <h2>About Us</h2>
+    <p>Double J Carpentry is a father-and-son team, Jimmy and Jay Scanlon, committed to bringing timeless craftsmanship to every residential project.</p>
+  </section>  <section id="services" class="fade-in">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Custom Cabinets</li>
+      <li>Doors and Architraves</li>
+      <li>Skirting & Flooring</li>
+      <li>Staircases</li>
+    </ul>
+  </section>  <section id="gallery" class="fade-in">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/400x300/?carpentry" alt="Gallery Image 1" />
+      <img src="https://source.unsplash.com/400x300/?woodwork" alt="Gallery Image 2" />
+      <img src="https://source.unsplash.com/400x300/?tools" alt="Gallery Image 3" />
     </div>
-  </header>  <!-- Other sections ... -->  <!-- Gallery -->  <section id="gallery" class="max-w-6xl mx-auto px-4 py-20 fade-section">
-    <h2 class="text-3xl font-semibold text-center mb-10 text-primary">Gallery</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <img src="Screenshot_20250616_194503_Chrome.jpg" alt="Project" class="cursor-pointer rounded-lg shadow-md" onclick="openGallery(0)" />
-    </div>
-  </section>  <div id="imageOverlay" class="overlay" onclick="closeGallery(event)">
-    <img id="overlayImage" src="" alt="Full Image">
-    <div class="gallery-nav">
-      <span onclick="event.stopPropagation(); prevImage();">&#8592;</span>
-      <span onclick="event.stopPropagation(); nextImage();">&#8594;</span>
-    </div>
-  </div>  <!-- Footer -->  <footer class="bg-gray-800 text-white py-6 text-center text-sm">
+  </section>  <div id="lightboxOverlay">
+    <span class="arrow left">&#10094;</span>
+    <img id="lightboxImage" src="" alt="Full Image" />
+    <span class="arrow right">&#10095;</span>
+  </div>  <section id="testimonials" class="fade-in">
+    <h2>What Our Clients Say</h2>
+    <blockquote>"Exceptional work and genuine people. Jimmy and Jay are top-notch."</blockquote>
+    <blockquote>"Beautiful finish and reliable service. Highly recommend!"</blockquote>
+  </section>  <section id="contact" class="fade-in">
+    <h2>Contact Us</h2>
+    <form id="hubspot-form">
+      <input type="text" name="firstname" placeholder="First Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p>Email: info@doublejcarpentry.co.uk<br />Phone: 020 3642 0880</p>
+  </section>  <footer>
     &copy; 2025 Double J Carpentry. All rights reserved.
   </footer>  <script>
-    const faders = document.querySelectorAll('.fade-section');
-
-    const appearOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    const fadeInSections = document.querySelectorAll('.fade-in');
+    const options = { threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
         }
       });
-    }, appearOptions);
+    }, options);
+    fadeInSections.forEach(section => observer.observe(section));
 
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
+    // Gallery Logic
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightboxOverlay');
+    const lightboxImg = document.getElementById('lightboxImage');
+    let currentIndex = 0;
+
+    const updateImage = (index) => {
+      currentIndex = (index + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    };
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        updateImage(index);
+        lightbox.classList.add('active');
+      });
     });
 
-    const images = [
-      'Screenshot_20250616_194503_Chrome.jpg'
-    ];
-    let currentImage = 0;
-
-    function openGallery(index) {
-      currentImage = index;
-      document.getElementById('overlayImage').src = images[currentImage];
-      document.getElementById('imageOverlay').classList.add('active');
-    }
-
-    function closeGallery(event) {
-      if (event.target.id === 'imageOverlay') {
-        document.getElementById('imageOverlay').classList.remove('active');
+    document.querySelector('.arrow.left').addEventListener('click', () => updateImage(currentIndex - 1));
+    document.querySelector('.arrow.right').addEventListener('click', () => updateImage(currentIndex + 1));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImg) {
+        lightbox.classList.remove('active');
       }
-    }
-
-    function nextImage() {
-      currentImage = (currentImage + 1) % images.length;
-      document.getElementById('overlayImage').src = images[currentImage];
-    }
-
-    function prevImage() {
-      currentImage = (currentImage - 1 + images.length) % images.length;
-      document.getElementById('overlayImage').src = images[currentImage];
-    }
-
-    // Touch swipe support for mobile
-    let touchStartX = 0;
-    document.getElementById('imageOverlay').addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
     });
 
-    document.getElementById('imageOverlay').addEventListener('touchend', function (e) {
-      let touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX < touchStartX - 50) {
-        nextImage();
-      } else if (touchEndX > touchStartX + 50) {
-        prevImage();
-      }
+    lightboxImg.addEventListener('touchstart', handleTouchStart, false);
+    lightboxImg.addEventListener('touchmove', handleTouchMove, false);
+    let xDown = null;
+
+    function handleTouchStart(evt) {
+      xDown = evt.touches[0].clientX;
+    }
+    function handleTouchMove(evt) {
+      if (!xDown) return;
+      let xUp = evt.touches[0].clientX;
+      let xDiff = xDown - xUp;
+      if (xDiff > 0) updateImage(currentIndex + 1);
+      else updateImage(currentIndex - 1);
+      xDown = null;
+    }
+
+    // HubSpot form integration (placeholder)
+    document.getElementById('hubspot-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(this);
+
+      fetch('https://forms.hubspot.com/uploads/form/v2/YOUR_PORTAL_ID/YOUR_FORM_ID', {
+        method: 'POST',
+        body: data,
+        mode: 'no-cors'
+      }).then(() => alert('Message sent (placeholder behavior).')).catch(err => console.error(err));
     });
   </script></body>
 </html>
