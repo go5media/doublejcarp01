@@ -825,179 +825,20 @@
       margin-bottom: var(--spacing-sm);
       height: 80px;
       width: 80px;
-      object-fit: contain;
-    }
 
-    .service-card h3 {
-      color: var(--forest-orange);
-      margin-bottom: var(--spacing-xs);
-    }
 
-    .service-card p {
-      color: var(--text-color);
-      font-size: 0.95rem;
-    }
 
-    /* Gallery Grid */
-    .gallery-grid {
-      display: grid;
-      gap: var(--spacing-md);
-      grid-template-columns: repeat(6, 1fr);
-    }
 
-    @media (max-width: 767px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
 
-    .gallery-grid img {
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      box-shadow: var(--box-shadow-light);
-      transition: transform 0.3s ease;
-    }
 
-    .gallery-grid img:hover,
-    .gallery-grid img:focus {
-      transform: scale(1.05);
-      outline: none;
-    }
 
-    /* Gallery Fullscreen Overlay */
-    .gallery-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: var(--overlay-gray);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease;
-      z-index: 1100;
-    }
 
-    .gallery-overlay.visible {
-      opacity: 1;
-      visibility: visible;
-    }
 
-    .gallery-overlay img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: var(--border-radius);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-      user-select: none;
-    }
 
-    .gallery-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 2.5rem;
-      cursor: pointer;
-      padding: 0;
-      line-height: 1;
-      user-select: none;
-    }
 
-    .gallery-nav {
-      position: absolute;
-      bottom: 1.5rem;
-      background: rgba(193, 80, 0, 0.8);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
 
-    .gallery-nav:hover,
-    .gallery-nav:focus {
-      background-color: var(--forest-orange-light);
-      outline: none;
-    }
 
-    .gallery-prev {
-      left: 1.5rem;
-    }
-
-    .gallery-next {
-      right: 1.5rem;
-    }
-
-    /* Contact Form */
-    form {
-      max-width: 500px;
-      margin-bottom: var(--spacing-lg);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-
-    label {
-      font-weight: 600;
-      color: var(--forest-orange-dark);
-    }
-
-    input,
-    textarea {
-      padding: var(--spacing-xs);
-      border: 1px solid #ccc;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
-      resize: vertical;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--forest-orange);
-      outline: none;
-      box-shadow: 0 0 5px var(--forest-orange-light);
-    }
-
-    .btn-submit {
-      background-color: var(--forest-orange);
-      color: white;
-      border: none;
-      padding: var(--spacing-sm);
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      align-self: flex-start;
-    }
-
-    .btn-submit:hover,
-    .btn-submit:focus {
-      background-color: var(--forest-orange-dark);
-      outline: none;
-    }
-
-    /* Contact info */
-    .contact-info p {
-      margin: 0.2rem 0;
-      font-size: 1rem;
-      color: var(--text-color);
-    }
-
-    .contact-info a {
-      color: var(--forest-orange);
-      text-decoration: underline;
-    }
-  </style>
+  
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
