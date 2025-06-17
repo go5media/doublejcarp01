@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Double J Carpentry - Family-run carpentry business by Jimmy and Jay Scanlon. High-quality bespoke carpentry services.">
+  <meta name="description" content="Double J Carpentry - Family-run carpentry business by Jimmy and Jay Scanlon. High-quality bespoke carpentry services including loft conversions, extensions, and general carpentry. Serving London, Surrey, and Kent.">
   <title>Double J Carpentry</title>
 
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -55,6 +55,7 @@
       --color-dark-grey: hsl(0, 0%, 30%);
 
       --spacing-unit: 8px;
+      --spacing-xs: calc(var(--spacing-unit) * 1);   /* 8px */
       --spacing-sm: calc(var(--spacing-unit) * 2);   /* 16px */
       --spacing-md: calc(var(--spacing-unit) * 4);   /* 32px */
       --spacing-lg: calc(var(--spacing-unit) * 8);   /* 64px */
@@ -89,135 +90,7 @@
         padding: var(--spacing-sm);
       }
     }
-  </style>
-</head>
-<body>
-  <header id="main-header">
-    <div class="container header-content">
-      <h1 class="business-name">Double J Carpentry</h1>
-      <nav class="main-nav">
-        <button class="burger-menu" aria-label="Toggle menu">
-          <span class="burger-bar"></span>
-          <span class="burger-bar"></span>
-          <span class="burger-bar"></span>
-        </button>
-        <ul class="nav-list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section id="about" class="fade-in-section">
-      <div class="container">
-        <h2>About Double J Carpentry</h2>
-        <p>Welcome to Double J Carpentry, a family-run business passionately dedicated to crafting bespoke wooden solutions. Founded by father and son duo, **Jimmy and Jay Scanlon**, we bring generations of carpentry expertise and a shared commitment to quality and precision to every project. From custom furniture to intricate installations, we pride ourselves on delivering exceptional craftsmanship that truly transforms spaces. We believe in building lasting relationships with our clients, just as we build enduring pieces of carpentry.</p>
-      </div>
-    </section>
-
-    <section id="services" class="fade-in-section">
-      <div class="container">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=F" alt="Custom Furniture Icon">
-            <h3>Custom Furniture</h3>
-            <p>From elegant dining tables to built-in wardrobes, we design and build unique furniture pieces tailored to your style and space.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=C" alt="Cabinetry Icon">
-            <h3>Bespoke Cabinetry</h3>
-            <p>Expertly crafted cabinets for kitchens, bathrooms, or living areas, maximizing space and enhancing aesthetics.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=S" alt="Stairs Icon">
-            <h3>Staircases & Handrails</h3>
-            <p>Custom-designed staircases and handrails that are both functional and a stunning architectural feature in your home.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=D" alt="Decking Icon">
-            <h3>Decking & Outdoor Structures</h3>
-            <p>Durable and beautiful outdoor decking, pergolas, and other wooden structures to elevate your outdoor living.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=I" alt="Installation Icon">
-            <h3>Installations & Trim Work</h3>
-            <p>Precise installation of doors, windows, skirting boards, architraves, and other decorative trim work.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=R" alt="Renovation Icon">
-            <h3>Renovations & Repairs</h3>
-            <p>Restoration of existing wooden elements and expert repairs for any damaged carpentry.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery" class="fade-in-section">
-      <div class="container">
-        <h2>Our Work</h2>
-        <div class="gallery-grid">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+1" alt="Carpentry Project 1" data-index="0">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+2" alt="Carpentry Project 2" data-index="1">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+3" alt="Carpentry Project 3" data-index="2">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+4" alt="Carpentry Project 4" data-index="3">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+5" alt="Carpentry Project 5" data-index="4">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+6" alt="Carpentry Project 6" data-index="5">
-          </div>
-      </div>
-
-      <div class="gallery-overlay" style="display: none;">
-        <div class="overlay-content">
-          <img src="" alt="Gallery Image" class="overlay-image">
-          <button class="overlay-close" aria-label="Close image gallery">&times;</button>
-          <button class="overlay-nav overlay-prev" aria-label="Previous image">&#10094;</button>
-          <button class="overlay-nav overlay-next" aria-label="Next image">&#10095;</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="fade-in-section">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <form class="contact-form" action="your_hubspot_form_handler_url" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
-
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
-
-          <input type="hidden" name="hs_context" value='{"hutk":"[HUBSPOT_UTK]","pageUrl":"[PAGE_URL]","pageName":"[PAGE_NAME]","legallyCompromised":"false"}'>
-          <input type="hidden" id="hubspot-portal-id" name="portalId" value="YOUR_HUBSPOT_PORTAL_ID">
-          <input type="hidden" id="hubspot-form-id" name="formId" value="YOUR_HUBSPOT_FORM_ID">
-
-          <button type="submit">Send Message</button>
-        </form>
-
-        <div class="contact-details">
-          <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
-          <p>Phone: <a href="tel:02036420880">020 3642 0880</a></p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Double J Carpentry. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <style>
     /* Header Styles */
     #main-header {
       position: fixed;
@@ -469,6 +342,7 @@
       object-fit: contain;
       border-radius: var(--border-radius-md);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease; /* For slide animation */
     }
 
     .overlay-close {
@@ -600,7 +474,151 @@
       padding: var(--spacing-md) 0;
       margin-top: var(--spacing-lg);
     }
+
+    /* Optional: Style to prevent body scroll when overlay/menu is open */
+    body.no-scroll {
+      overflow: hidden;
+    }
   </style>
+</head>
+<body>
+  <header id="main-header">
+    <div class="container header-content">
+      <h1 class="business-name">Double J Carpentry</h1>
+      <nav class="main-nav">
+        <button class="burger-menu" aria-label="Toggle menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="fade-in-section">
+      <div class="container">
+        <h2>About Double J Carpentry</h2>
+        <p>Welcome to Double J Carpentry, a family-run business passionately dedicated to crafting bespoke wooden solutions. Founded by father and son duo, **Jimmy and Jay Scanlon**, we bring generations of carpentry expertise and a shared commitment to quality and precision to every project. From custom furniture to intricate installations, we pride ourselves on delivering exceptional craftsmanship that truly transforms spaces. We believe in building lasting relationships with our clients, just as we build enduring pieces of carpentry.</p>
+        <p>Proudly serving **London, Surrey, and Kent**, we're ready to bring your vision to life with a comprehensive range of carpentry services.</p>
+      </div>
+    </section>
+
+    <section id="services" class="fade-in-section">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=L" alt="Loft Conversion Icon">
+            <h3>Loft Conversions</h3>
+            <p>Transform your unused loft space into a valuable new room, tailored to your needs and seamlessly integrated into your home.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=E" alt="Extension Icon">
+            <h3>Extensions</h3>
+            <p>Expand your living area with expertly built extensions, adding space and value to your property.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=G" alt="Garage Conversion Icon">
+            <h3>Garage Conversions</h3>
+            <p>Convert your garage into a functional and stylish living space, whether it's an office, gym, or extra bedroom.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=C" alt="General Carpentry Icon">
+            <h3>General Carpentry</h3>
+            <p>From custom shelving to door fittings, we handle all aspects of general carpentry with precision and care.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=M" alt="Maintenance Icon">
+            <h3>Maintenance</h3>
+            <p>Reliable and efficient carpentry maintenance services to keep your property in top condition.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=R" alt="Refurbishment Icon">
+            <h3>Refurbishments</h3>
+            <p>Comprehensive carpentry services for refurbishing your home, bringing new life to old spaces.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=V" alt="Renovation Icon">
+            <h3>Renovations</h3>
+            <p>Complete carpentry solutions for large-scale home renovations, ensuring a high-quality finish.</p>
+          </div>
+          <div class="service-card">
+            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=Q" alt="Free Quotation Icon">
+            <h3>Free Quotations</h3>
+            <p>Contact us today for a no-obligation, free quotation on your next carpentry project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="fade-in-section">
+      <div class="container">
+        <h2>Our Work</h2>
+        <div class="gallery-grid">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+1" alt="Carpentry Project 1" data-index="0">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+2" alt="Carpentry Project 2" data-index="1">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+3" alt="Carpentry Project 3" data-index="2">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+4" alt="Carpentry Project 4" data-index="3">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+5" alt="Carpentry Project 5" data-index="4">
+          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+6" alt="Carpentry Project 6" data-index="5">
+          </div>
+      </div>
+
+      <div class="gallery-overlay" style="display: none;">
+        <div class="overlay-content">
+          <img src="" alt="Gallery Image" class="overlay-image">
+          <button class="overlay-close" aria-label="Close image gallery">&times;</button>
+          <button class="overlay-nav overlay-prev" aria-label="Previous image">&#10094;</button>
+          <button class="overlay-nav overlay-next" aria-label="Next image">&#10095;</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="fade-in-section">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form class="contact-form" action="your_hubspot_form_handler_url" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+
+          <label for="phone">Phone:</label>
+          <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
+
+          <input type="hidden" name="hs_context" value='{"hutk":"[HUBSPOT_UTK]","pageUrl":"[PAGE_URL]","pageName":"[PAGE_NAME]","legallyCompromised":"false"}'>
+          <input type="hidden" id="hubspot-portal-id" name="portalId" value="YOUR_HUBSPOT_PORTAL_ID">
+          <input type="hidden" id="hubspot-form-id" name="formId" value="YOUR_HUBSPOT_FORM_ID">
+
+          <button type="submit">Send Message</button>
+        </form>
+
+        <div class="contact-details">
+          <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
+          <p>Phone: <a href="tel:07952865108">07952 865 108</a></p>
+          <p>Serving: **London, Surrey, Kent**</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Double J Carpentry. All rights reserved.</p>
+    </div>
+  </footer>
+
   <script>
     // --- Burger Menu Toggle ---
     const burgerMenu = document.querySelector('.burger-menu');
@@ -632,7 +650,7 @@
         const targetElement = document.querySelector(targetId);
         const headerOffset = document.querySelector('#main-header').offsetHeight; // Get header height
         const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset - 20; // Add some extra padding
+        const offsetPosition = elementPosition - headerOffset - 20; // Add some extra padding for spacing
 
         window.scrollTo({
           top: offsetPosition,
@@ -700,7 +718,7 @@
       removeGalleryEventListeners();
     }
 
-    function showImage(index) {
+    function showImage(index, direction = 'next') {
       // Loop infinitely
       if (index < 0) {
         currentImageIndex = images.length - 1;
@@ -710,21 +728,27 @@
         currentImageIndex = index;
       }
 
-      // Apply sliding animation using CSS classes or direct style manipulation
-      // For a simple fade/slide effect, we'll just update src and let CSS handle transitions
-      overlayImage.style.opacity = 0; // Fade out current
+      // Apply sliding animation by temporarily adjusting transform and then resetting
+      overlayImage.style.transition = 'none'; // Disable transition for immediate jump
+      if (direction === 'next') {
+        overlayImage.style.transform = 'translateX(100%)';
+      } else {
+        overlayImage.style.transform = 'translateX(-100%)';
+      }
+
       setTimeout(() => {
         overlayImage.src = images[currentImageIndex];
-        overlayImage.style.opacity = 1; // Fade in new
-      }, 300); // Match CSS transition duration
+        overlayImage.style.transition = 'transform 0.3s ease-out'; // Re-enable transition for slide-in
+        overlayImage.style.transform = 'translateX(0)';
+      }, 50); // Small delay to allow transform to register before changing src
     }
 
     function navigatePrev() {
-      showImage(currentImageIndex - 1);
+      showImage(currentImageIndex - 1, 'prev');
     }
 
     function navigateNext() {
-      showImage(currentImageIndex + 1);
+      showImage(currentImageIndex + 1, 'next');
     }
 
     // Swipe gesture variables
