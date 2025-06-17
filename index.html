@@ -1,754 +1,1136 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
+  <!-- Basic Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Double J Carpentry</title>
-  <style>
-    /* ===== COLORS ===== */
-    :root {
-      /* Forest Orange palette */
-      --forest-orange: #b14e16; /* main warm deep orange */
-      --forest-orange-dark: #8a3b0f; /* darker accent */
-      --forest-orange-light: #d16f2a; /* lighter accent */
-      --background-light: #fff8f2; /* very light warm background */
-      --text-dark: #3a2c23;
-      --card-bg: #fff3e6;
-      --overlay-bg: rgba(58, 44, 35, 0.8);
-      --button-hover: #a44611;
-      --button-bg: var(--forest-orange);
-    }
+  <meta name="description" content="Double J Carpentry - Family-run carpentry business by Jimmy and Jay Scanlon, providing expert woodworking services." />
 
-    /* ===== GLOBAL STYLES ===== */
-    html {
-      scroll-behavior: smooth;
+  <title>Double J Carpentry</title>
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts: Clean, modern sans-serif -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* CSS Reset (simplified normalize) */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
-    body {
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--background-light);
-      color: var(--text-dark);
-      line-height: 1.6;
+      padding: 0;
+      border: 0;
+      vertical-align: baseline;
+      font-size: 100%;
+      font: inherit;
+    }
+    /* Set core body defaults */
+    body {
+      line-height: 1.5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background-color: #fff;
+      color: #222;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
-    a {
-      color: var(--forest-orange-dark);
-      text-decoration: none;
-      cursor: pointer;
-    }
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-      outline: none;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      position: sticky;
-      top: 0;
-      background-color: var(--forest-orange);
-      color: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      font-weight: 700;
-      user-select: none;
-    }
-
-    /* NAVIGATION */
-    nav {
-      position: relative;
-    }
-
-    /* Desktop nav */
-    nav ul {
+    /* Remove list styles */
+    ol, ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 2rem;
     }
-    nav ul li {
-      font-weight: 600;
-    }
-    nav ul li a {
-      color: white;
-      font-size: 1rem;
-      padding: 0.3rem 0;
-      display: inline-block;
-      transition: color 0.3s ease;
-    }
-    nav ul li a:hover,
-    nav ul li a:focus {
-      color: var(--forest-orange-light);
-    }
-
-    /* MOBILE MENU BUTTON */
-    .burger {
-      display: none;
-      width: 28px;
-      height: 22px;
+    a {
+      text-decoration: none;
+      color: inherit;
       cursor: pointer;
-      position: relative;
-      z-index: 1100;
     }
-    .burger span,
-    .burger span::before,
-    .burger span::after {
+    img {
+      max-width: 100%;
       display: block;
-      background-color: white;
-      height: 3px;
-      border-radius: 2px;
-      position: absolute;
-      width: 100%;
-      transition: all 0.35s ease;
-    }
-    .burger span {
-      top: 50%;
-      margin-top: -1.5px;
-    }
-    .burger span::before {
-      content: "";
-      top: -8px;
-    }
-    .burger span::after {
-      content: "";
-      bottom: -8px;
-    }
-    /* Transform burger into X when active */
-    .burger.active span {
-      background-color: transparent;
-    }
-    .burger.active span::before {
-      transform: rotate(45deg);
-      top: 0;
-    }
-    .burger.active span::after {
-      transform: rotate(-45deg);
-      bottom: 0;
+      height: auto;
     }
 
-    /* MOBILE NAV MENU */
-    nav.mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      height: 100vh;
-      width: 250px;
-      background-color: var(--forest-orange);
-      display: flex;
-      flex-direction: column;
-      padding-top: 5rem;
-      transition: right 0.35s ease;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
-      z-index: 1050;
-    }
-    nav.mobile-menu.open {
-      right: 0;
-    }
-    nav.mobile-menu ul {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding-left: 2rem;
-    }
-    nav.mobile-menu ul li a {
-      font-size: 1.2rem;
+    /* CSS Variables: Forest Orange color scheme and spacing */
+    :root {
+      --forest-orange: #c15000; /* Deep rich orange */
+      --forest-orange-dark: #8a2e00; /* Darker shade for contrast */
+      --forest-orange-light: #ff7f32; /* Lighter accent */
+      --text-color: #222222;
+      --background-color: #ffffff;
+      --overlay-gray: rgba(34, 34, 34, 0.75);
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2.5rem;
+      --border-radius: 6px;
+      --box-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --transition-speed: 0.3s;
     }
 
-    /* ===== MAIN CONTENT ===== */
-    main {
-      max-width: 1100px;
-      margin: 2rem auto 4rem;
-      padding: 0 1rem;
+    /* Fade in / Fade out animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    section {
-      margin-bottom: 4rem;
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
-    section.visible {
-      opacity: 1;
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
-    /* ===== SERVICES ===== */
-    #services h2 {
-      font-size: 2rem;
-      border-bottom: 3px solid var(--forest-orange);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .service-card {
-      background-color: var(--card-bg);
-      border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(177, 78, 22, 0.3);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-    .service-card:hover,
-    .service-card:focus-within {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(177, 78, 22, 0.6);
-      outline: none;
-    }
-    .service-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-bottom: 3px solid var(--forest-orange);
-    }
-    .service-card-content {
-      padding: 1rem 1.25rem 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .service-card h3 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-      color: var(--forest-orange-dark);
-      font-weight: 700;
-    }
-    .service-card p {
-      margin: 0;
-      flex-grow: 1;
-      color: #4a3c33;
+    .fade-in {
+      animation: fadeIn var(--transition-speed) ease forwards;
     }
 
-    /* ===== GALLERY ===== */
-    #gallery h2 {
-      font-size: 2rem;
-      border-bottom: 3px solid var(--forest-orange);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
+    .fade-out {
+      animation: fadeOut var(--transition-speed) ease forwards;
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-    }
-    @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: 130px;
-      object-fit: cover;
-      cursor: pointer;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(177, 78, 22, 0.3);
-      transition: transform 0.25s ease;
-    }
-    .gallery-grid img:hover,
-    .gallery-grid img:focus {
-      transform: scale(1.05);
-      outline: none;
-      box-shadow: 0 6px 15px rgba(177, 78, 22, 0.6);
-    }
-
-    /* FULLSCREEN GALLERY OVERLAY */
-    #gallery-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: var(--overlay-bg);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-    #gallery-overlay.active {
-      display: flex;
-    }
-    #gallery-overlay img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
-      user-select: none;
-      position: relative;
-      transition: transform 0.4s ease;
-    }
-    /* NAVIGATION BUTTONS */
-    .gallery-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(177, 78, 22, 0.8);
-      border: none;
-      color: white;
-      font-size: 2.5rem;
-      padding: 0 0.5rem;
-      cursor: pointer;
-      border-radius: 4px;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-    .gallery-nav:hover,
-    .gallery-nav:focus {
-      background-color: var(--forest-orange-dark);
-      outline: none;
-    }
-    #gallery-prev {
-      left: 10px;
-    }
-    #gallery-next {
-      right: 10px;
-    }
-
-    /* CONTACT FORM */
-    #contact h2 {
-      font-size: 2rem;
-      border-bottom: 3px solid var(--forest-orange);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-    form {
-      background-color: var(--card-bg);
-      padding: 2rem 2.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(177, 78, 22, 0.3);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-      color: var(--forest-orange-dark);
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea {
-      width: 100%;
-      padding: 0.6rem 0.8rem;
-      margin-bottom: 1.3rem;
-      border: 2px solid var(--forest-orange-light);
-      border-radius: 5px;
-      font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
-      transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus,
-    textarea:focus {
-      border-color: var(--forest-orange-dark);
-      outline: none;
-    }
-    textarea {
-      min-height: 100px;
-    }
-    button[type="submit"] {
-      background-color: var(--button-bg);
-      color: white;
-      border: none;
-      padding: 0.75rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-    }
-    button[type="submit"]:hover,
-    button[type="submit"]:focus {
-      background-color: var(--button-hover);
-      outline: none;
-    }
-    /* Success/Error message */
-    #form-message {
-      margin-top: 1rem;
-      font-weight: 600;
-      color: var(--forest-orange-dark);
-      min-height: 1.3em;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: var(--forest-orange-dark);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--forest-orange-light);
-      user-select: none;
-    }
-
-    /* ===== MEDIA QUERIES ===== */
-    @media (max-width: 900px) {
-      main {
-        margin: 1.5rem 1rem 3rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 1rem 1rem;
-      }
-      nav ul {
-        display: none;
-      }
-      .burger {
-        display: block;
-      }
-    }
-
   </style>
 </head>
 <body>
-  <header>
-    <h1>Double J Carpentry</h1>
-    <nav aria-label="Primary navigation">
-      <ul>
-        <li><a href="#services" tabindex="0">Services</a></li>
-        <li><a href="#gallery" tabindex="0">Gallery</a></li>
-        <li><a href="#contact" tabindex="0">Contact</a></li>
-      </ul>
-
-      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span>
-      </button>
-
-      <nav id="mobile-menu" class="mobile-menu" aria-hidden="true">
-        <ul>
-          <li><a href="#services" tabindex="-1">Services</a></li>
-          <li><a href="#gallery" tabindex="-1">Gallery</a></li>
-          <li><a href="#contact" tabindex="-1">Contact</a></li>
+  <!-- Fixed Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">Double J Carpentry</div>
+      <nav>
+        <button id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" class="burger">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu" role="menu">
+          <li role="none"><a role="menuitem" href="#about">About</a></li>
+          <li role="none"><a role="menuitem" href="#services">Services</a></li>
+          <li role="none"><a role="menuitem" href="#gallery">Gallery</a></li>
+          <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
         </ul>
       </nav>
-    </nav>
+    </div>
   </header>
 
-  <main>
+  <!-- Main Content Wrapper -->
+  <main class="container main-content">
+
+    <!-- About Section -->
+    <section id="about" class="section fade-section" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title">About Us</h2>
+      <p>
+        Double J Carpentry is a family-run business owned by father and son duo,
+        <strong>Jimmy and Jay Scanlon</strong>. With years of experience, we deliver quality craftsmanship and personalized service for all your woodworking needs.
+      </p>
+    </section>
+
     <!-- Services Section -->
-    <section id="services" tabindex="-1" aria-labelledby="services-heading">
-      <h2 id="services-heading">Our Services</h2>
+    <section id="services" class="section fade-section" tabindex="-1" aria-labelledby="services-title">
+      <h2 id="services-title">Our Services</h2>
       <div class="services-grid">
-        <article class="service-card" tabindex="0" aria-label="Custom furniture service">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Handcrafted wooden furniture" loading="lazy" />
-          <div class="service-card-content">
-            <h3>Custom Furniture</h3>
-            <p>Handcrafted bespoke furniture tailored to your style and needs with premium hardwoods.</p>
-          </div>
+        <!-- Card 1 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Fitting" alt="Fitting service icon" />
+          <h3>Custom Fitting</h3>
+          <p>Tailored carpentry fitting for doors, windows, and furniture to your exact specifications.</p>
         </article>
 
-        <article class="service-card" tabindex="0" aria-label="Home renovations service">
-          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Wooden cabinetry renovation" loading="lazy" />
-          <div class="service-card-content">
-            <h3>Home Renovations</h3>
-            <p>Expert carpentry solutions for kitchens, bathrooms, and general home improvements.</p>
-          </div>
+        <!-- Card 2 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Repair" alt="Repair service icon" />
+          <h3>Wood Repair</h3>
+          <p>Expert repair services to restore and maintain the beauty and function of your wooden pieces.</p>
         </article>
 
-        <article class="service-card" tabindex="0" aria-label="Decking and outdoor structures service">
-          <img src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=400&q=80" alt="Wooden outdoor decking" loading="lazy" />
-          <div class="service-card-content">
-            <h3>Decking & Outdoor Structures</h3>
-            <p>Beautifully crafted decks, pergolas, and garden structures designed to last.</p>
-          </div>
-        </article>
-
-        <article class="service-card" tabindex="0" aria-label="Repairs and maintenance service">
-          <img src="https://images.unsplash.com/photo-1507668077129-56d0d6ac0e55?auto=format&fit=crop&w=400&q=80" alt="Carpentry repair work" loading="lazy" />
-          <div class="service-card-content">
-            <h3>Repairs & Maintenance</h3>
-            <p>Reliable repairs and upkeep to preserve and extend the life of your woodwork.</p>
-          </div>
+        <!-- Card 3 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Joinery" alt="Joinery service icon" />
+          <h3>Joinery</h3>
+          <p>High-quality joinery for bespoke furniture and structural woodwork using traditional techniques.</p>
         </article>
       </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" tabindex="-1" aria-labelledby="gallery-heading">
-      <h2 id="gallery-heading">Gallery</h2>
-      <div class="gallery-grid" role="list" aria-label="Gallery of carpentry projects">
-        <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80" alt="Close up of fine wood grain on a furniture project" role="listitem" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=600&q=80" alt="Beautiful finished wooden staircase" role="listitem" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1556911073-52527ac437f5?auto=format&fit=crop&w=600&q=80" alt="Modern wooden kitchen cabinetry" role="listitem" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Handcrafted wooden table in natural light" role="listitem" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664?auto=format&fit=crop&w=600&q=80" alt="Wooden pergola with climbing plants" role="listitem" tabindex="0" />
-        <img src="https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=600&q=80" alt="Outdoor wooden deck with seating" role="listitem" tabindex="0" />
+    <section id="gallery" class="section fade-section" tabindex="-1" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="gallery-grid">
+        <!-- Sample images -->
+        <img src="https://via.placeholder.com/300x200?text=Project+1" alt="Carpentry project 1" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+2" alt="Carpentry project 2" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+3" alt="Carpentry project 3" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+4" alt="Carpentry project 4" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+5" alt="Carpentry project 5" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+6" alt="Carpentry project 6" tabindex="0" />
+      </div>
+
+      <!-- Fullscreen overlay for gallery -->
+      <div id="gallery-overlay" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1" class="gallery-overlay hidden">
+        <button id="gallery-close" aria-label="Close gallery" class="gallery-close">&times;</button>
+        <img id="gallery-fullscreen-img" src="" alt="" />
+        <button id="gallery-prev" aria-label="Previous image" class="gallery-nav gallery-prev">&#9664;</button>
+        <button id="gallery-next" aria-label="Next image" class="gallery-nav gallery-next">&#9654;</button>
       </div>
     </section>
 
-    <!-- Gallery fullscreen overlay -->
-    <div id="gallery-overlay" aria-modal="true" role="dialog" aria-label="Fullscreen image gallery" tabindex="-1">
-      <button class="gallery-nav" id="gallery-prev" aria-label="Previous image">&#10094;</button>
-      <img src="" alt="" />
-      <button class="gallery-nav" id="gallery-next" aria-label="Next"</button>
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-section" tabindex="-1" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Us</h2>
 
-        </section>
+      <form id="contact-form" method="POST" action="#" novalidate>
+        <input type="hidden" name="hubspot_portal_id" value="YOUR_PORTAL_ID_HERE" />
+        <input type="hidden" name="hubspot_form_id" value="YOUR_FORM_ID_HERE" />
 
-  <!-- Contact Section -->
-  <section id="contact" class="section contact-section" aria-label="Contact Double J Carpentry">
-    <h2>Contact Us</h2>
-    <form id="contactForm" novalidate>
-      <div class="form-group">
-        <label for="name">Name<span aria-hidden="true">*</span></label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email<span aria-hidden="true">*</span></label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" />
-      </div>
-      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your full name" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
         <label for="phone">Phone</label>
-        <input type="tel" id="phone" name="phone" placeholder="+44 1234 567890" />
-      </div>
-      <div class="form-group">
-        <label for="message">Message<span aria-hidden="true">*</span></label>
-        <textarea id="message" name="message" rows="5" placeholder="Your message here" required aria-required="true"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" aria-label="Send message to Double J Carpentry">Send Message</button>
-      <div id="formStatus" role="alert" aria-live="polite"></div>
-    </form>
-  </section>
-</main>
+        <input id="phone" name="phone" type="tel" placeholder="Optional phone number" />
 
-<footer class="footer">
-  <p>&copy; 2025 Double J Carpentry. Jimmy & Jay Scanlon.</p>
-</footer>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Your message here"></textarea>
 
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+
+      <div class="contact-info">
+        <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
+        <p>Phone: <a href="tel:+442036420880">020 3642 0880</a></p>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Container padding */
+    .container {
+      padding: var(--spacing-lg) var(--spacing-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--forest-orange);
+      color: white;
+      box-shadow: var(--box-shadow-light);
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: relative;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .nav-menu a {
+      color: white;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      color: var(--forest-orange-light);
+      outline: none;
+    }
+
+    /* Burger menu button */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 28px;
+      height: 22px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform var(--transition-speed) ease;
+    }
+    .burger:focus {
+      outline: 2px solid var(--forest-orange-light);
+      outline-offset: 2px;
+    }
+    .burger-line {
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: 1px;
+    }
+    /* Burger open state */
+    .burger.open .burger-line:nth-child(1) {
+      transform: rotate(45deg);
+    }
+    .burger.open .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+    .burger.open .burger-line:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    /* Responsive nav-menu - hidden on mobile */
+    @media (max-width: 767px) {
+      .nav-menu {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: var(--forest-orange);
+        flex-direction: column;
+        width: 240px;
+        max-width: 80vw;
+        height: calc(100% - 60px);
+        padding: var(--spacing-md);
+        transform: translateX(100%);
+        transition: transform var(--transition-speed) ease;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+      }
+      .nav-menu.open {
+        transform: translateX(0);
+      }
+
+      .nav-menu li {
+        margin-bottom: var(--spacing-md);
+      }
+
+      .burger {
+        display: flex;
+      }
+    }
+
+    /* Section Styles */
+    .section {
+      margin-top: 80px; /* offset for fixed header */
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: var(--background-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+    }
+
+    .section h2 {
+      color: var(--forest-orange-dark);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+      padding: var(--spacing-md);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .service-card:hover,
+    .service-card:focus {
+      box-shadow: 0 6px 15px rgba(193, 80, 0, 0.4);
+      outline: none;
+    }
+
+    .service-card img {
+      margin-bottom: var(--spacing-sm);
+      height: 80px;
+      width: 80px;
+      object-fit: contain;
+    }
+
+    .service-card h3 {
+      color: var(--forest-orange);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .service-card p {
+      color: var(--text-color);
+      font-size: 0.95rem;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      gap: var(--spacing-md);
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .gallery-grid img {
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      box-shadow: var(--box-shadow-light);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover,
+    .gallery-grid img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Gallery Fullscreen Overlay */
+    .gallery-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--overlay-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1100;
+    }
+
+    .gallery-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gallery-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      user-select: none;
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      bottom: 1.5rem;
+      background: rgba(193, 80, 0, 0.8);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .gallery-nav:hover,
+    .gallery-nav:focus {
+      background-color: var(--forest-orange-light);
+      outline: none;
+    }
+
+    .gallery-prev {
+      left: 1.5rem;
+    }
+
+    .gallery-next {
+      right: 1.5rem;
+    }
+
+    /* Contact Form */
+    form {
+      max-width: 500px;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--forest-orange-dark);
+    }
+
+    input,
+    textarea {
+      padding: var(--spacing-xs);
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--forest-orange);
+      outline: none;
+      box-shadow: 0 0 5px var(--forest-orange-light);
+    }
+
+    .btn-submit {
+      background-color: var(--forest-orange);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover,
+    .btn-submit:focus {
+      background-color: var(--forest-orange-dark);
+      outline: none;
+    }
+
+    /* Contact info */
+    .contact-info p {
+      margin: 0.2rem 0;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .contact-info a {
+      color: var(--forest-orange);
+      text-decoration: underline;
+    }
+  </style>
+
+<body>
+  <!-- Fixed Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="brand">Double J Carpentry</div>
+      <nav>
+        <button id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" class="burger">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu" role="menu">
+          <li role="none"><a role="menuitem" href="#about">About</a></li>
+          <li role="none"><a role="menuitem" href="#services">Services</a></li>
+          <li role="none"><a role="menuitem" href="#gallery">Gallery</a></li>
+          <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="container main-content">
+
+    <!-- About Section -->
+    <section id="about" class="section fade-section" tabindex="-1" aria-labelledby="about-title">
+      <h2 id="about-title">About Us</h2>
+      <p>
+        Double J Carpentry is a family-run business owned by father and son duo,
+        <strong>Jimmy and Jay Scanlon</strong>. With years of experience, we deliver quality craftsmanship and personalized service for all your woodworking needs.
+      </p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section fade-section" tabindex="-1" aria-labelledby="services-title">
+      <h2 id="services-title">Our Services</h2>
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Fitting" alt="Fitting service icon" />
+          <h3>Custom Fitting</h3>
+          <p>Tailored carpentry fitting for doors, windows, and furniture to your exact specifications.</p>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Repair" alt="Repair service icon" />
+          <h3>Wood Repair</h3>
+          <p>Expert repair services to restore and maintain the beauty and function of your wooden pieces.</p>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="service-card" role="article" tabindex="0">
+          <img src="https://via.placeholder.com/80?text=Joinery" alt="Joinery service icon" />
+          <h3>Joinery</h3>
+          <p>High-quality joinery for bespoke furniture and structural woodwork using traditional techniques.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section fade-section" tabindex="-1" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="gallery-grid">
+        <!-- Sample images -->
+        <img src="https://via.placeholder.com/300x200?text=Project+1" alt="Carpentry project 1" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+2" alt="Carpentry project 2" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+3" alt="Carpentry project 3" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+4" alt="Carpentry project 4" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+5" alt="Carpentry project 5" tabindex="0" />
+        <img src="https://via.placeholder.com/300x200?text=Project+6" alt="Carpentry project 6" tabindex="0" />
+      </div>
+
+      <!-- Fullscreen overlay for gallery -->
+      <div id="gallery-overlay" aria-hidden="true" role="dialog" aria-modal="true" tabindex="-1" class="gallery-overlay hidden">
+        <button id="gallery-close" aria-label="Close gallery" class="gallery-close">&times;</button>
+        <img id="gallery-fullscreen-img" src="" alt="" />
+        <button id="gallery-prev" aria-label="Previous image" class="gallery-nav gallery-prev">&#9664;</button>
+        <button id="gallery-next" aria-label="Next image" class="gallery-nav gallery-next">&#9654;</button>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-section" tabindex="-1" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Us</h2>
+
+      <form id="contact-form" method="POST" action="#" novalidate>
+        <input type="hidden" name="hubspot_portal_id" value="YOUR_PORTAL_ID_HERE" />
+        <input type="hidden" name="hubspot_form_id" value="YOUR_FORM_ID_HERE" />
+
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your full name" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" placeholder="Optional phone number" />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Your message here"></textarea>
+
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+
+      <div class="contact-info">
+        <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
+        <p>Phone: <a href="tel:+442036420880">020 3642 0880</a></p>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* Container padding */
+    .container {
+      padding: var(--spacing-lg) var(--spacing-md);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--forest-orange);
+      color: white;
+      box-shadow: var(--box-shadow-light);
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: relative;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--spacing-md);
+    }
+
+    .nav-menu a {
+      color: white;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a:focus {
+      color: var(--forest-orange-light);
+      outline: none;
+    }
+
+    /* Burger menu button */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 28px;
+      height: 22px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: transform var(--transition-speed) ease;
+    }
+    .burger:focus {
+      outline: 2px solid var(--forest-orange-light);
+      outline-offset: 2px;
+    }
+    .burger-line {
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: 1px;
+    }
+    /* Burger open state */
+    .burger.open .burger-line:nth-child(1) {
+      transform: rotate(45deg);
+    }
+    .burger.open .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+    .burger.open .burger-line:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    /* Responsive nav-menu - hidden on mobile */
+    @media (max-width: 767px) {
+      .nav-menu {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: var(--forest-orange);
+        flex-direction: column;
+        width: 240px;
+        max-width: 80vw;
+        height: calc(100% - 60px);
+        padding: var(--spacing-md);
+        transform: translateX(100%);
+        transition: transform var(--transition-speed) ease;
+        box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+      }
+      .nav-menu.open {
+        transform: translateX(0);
+      }
+
+      .nav-menu li {
+        margin-bottom: var(--spacing-md);
+      }
+
+      .burger {
+        display: flex;
+      }
+    }
+
+    /* Section Styles */
+    .section {
+      margin-top: 80px; /* offset for fixed header */
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: var(--background-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+    }
+
+    .section h2 {
+      color: var(--forest-orange-dark);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-light);
+      padding: var(--spacing-md);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .service-card:hover,
+    .service-card:focus {
+      box-shadow: 0 6px 15px rgba(193, 80, 0, 0.4);
+      outline: none;
+    }
+
+    .service-card img {
+      margin-bottom: var(--spacing-sm);
+      height: 80px;
+      width: 80px;
+      object-fit: contain;
+    }
+
+    .service-card h3 {
+      color: var(--forest-orange);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .service-card p {
+      color: var(--text-color);
+      font-size: 0.95rem;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      gap: var(--spacing-md);
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .gallery-grid img {
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      box-shadow: var(--box-shadow-light);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover,
+    .gallery-grid img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Gallery Fullscreen Overlay */
+    .gallery-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--overlay-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1100;
+    }
+
+    .gallery-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .gallery-overlay img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      user-select: none;
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      bottom: 1.5rem;
+      background: rgba(193, 80, 0, 0.8);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .gallery-nav:hover,
+    .gallery-nav:focus {
+      background-color: var(--forest-orange-light);
+      outline: none;
+    }
+
+    .gallery-prev {
+      left: 1.5rem;
+    }
+
+    .gallery-next {
+      right: 1.5rem;
+    }
+
+    /* Contact Form */
+    form {
+      max-width: 500px;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--forest-orange-dark);
+    }
+
+    input,
+    textarea {
+      padding: var(--spacing-xs);
+      border: 1px solid #ccc;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--forest-orange);
+      outline: none;
+      box-shadow: 0 0 5px var(--forest-orange-light);
+    }
+
+    .btn-submit {
+      background-color: var(--forest-orange);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover,
+    .btn-submit:focus {
+      background-color: var(--forest-orange-dark);
+      outline: none;
+    }
+
+    /* Contact info */
+    .contact-info p {
+      margin: 0.2rem 0;
+      font-size: 1rem;
+      color: var(--text-color);
+    }
+
+    .contact-info a {
+      color: var(--forest-orange);
+      text-decoration: underline;
+    }
+  </style>
+</body>
 <script>
-  // Sticky header burger menu toggle
-  const burger = document.querySelector('.burger');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = navMenu.querySelectorAll('a');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Burger menu toggle
+    const burger = document.getElementById('burger');
+    const navMenu = document.getElementById('nav-menu');
 
-  burger.addEventListener('click', () => {
-    const expanded = burger.getAttribute('aria-expanded') === 'true' || false;
-    burger.setAttribute('aria-expanded', !expanded);
-    burger.classList.toggle('open');
-    navMenu.classList.toggle('open');
-  });
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Close menu on nav item click
-      if (navMenu.classList.contains('open')) {
-        burger.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('open');
-      }
+    burger.addEventListener('click', () => {
+      const expanded = burger.getAttribute('aria-expanded') === 'true' || false;
+      burger.setAttribute('aria-expanded', !expanded);
+      burger.classList.toggle('open');
+      navMenu.classList.toggle('open');
     });
-  });
 
-  // Smooth scroll behavior for nav links
-  document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetID = this.getAttribute('href').slice(1);
-      const target = document.getElementById(targetID);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Section fade in/out on scroll with IntersectionObserver
-  const sections = document.querySelectorAll('.section');
-  const options = {
-    threshold: 0.1,
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
-    });
-  }, options);
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
-
-  // Gallery fullscreen viewer with navigation and swipe
-  const gallery = document.querySelector('.gallery');
-  const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-  const fullscreenImage = document.getElementById('fullscreenImage');
-  const prevBtn = document.querySelector('.fullscreen-prev');
-  const nextBtn = document.querySelector('.fullscreen-next');
-
-  let currentIndex = 0;
-  let galleryItems = [];
-
-  // Populate galleryItems from gallery images
-  galleryItems = Array.from(gallery.querySelectorAll('img')).map(img => ({
-    src: img.getAttribute('src'),
-    alt: img.getAttribute('alt') || '',
-  }));
-
-  function showImage(index, direction = 0) {
-    // direction: -1 for left, 1 for right, 0 for initial/no slide
-    if (index < 0) index = galleryItems.length - 1;
-    if (index >= galleryItems.length) index = 0;
-    currentIndex = index;
-
-    // Animate slide
-    fullscreenImage.classList.add('slide-out');
-    setTimeout(() => {
-      fullscreenImage.src = galleryItems[currentIndex].src;
-      fullscreenImage.alt = galleryItems[currentIndex].alt;
-      fullscreenImage.classList.remove('slide-out');
-
-      if (direction !== 0) {
-        fullscreenImage.style.animation = direction === 1 ? 'slideInRight 0.4s forwards' : 'slideInLeft 0.4s forwards';
-      } else {
-        fullscreenImage.style.animation = 'none';
-      }
-    }, 300);
-  }
-
-  // Open fullscreen on image click
-  gallery.querySelectorAll('img').forEach((img, idx) => {
-    img.addEventListener('click', () => {
-      fullscreenOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
-      showImage(idx);
-      fullscreenImage.focus();
-    });
-  });
-
-  // Close fullscreen on clicking outside image
-  fullscreenOverlay.addEventListener('click', (e) => {
-    if (e.target === fullscreenOverlay) {
-      closeFullscreen();
-    }
-  });
-
-  function closeFullscreen() {
-    fullscreenOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // Prev/Next navigation buttons
-  prevBtn.addEventListener('click', () => {
-    showImage(currentIndex - 1, -1);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    showImage(currentIndex + 1, 1);
-  });
-
-  // Keyboard navigation for fullscreen viewer
-  document.addEventListener('keydown', (e) => {
-    if (!fullscreenOverlay.classList.contains('open')) return;
-
-    if (e.key === 'ArrowLeft') {
-      showImage(currentIndex - 1, -1);
-    } else if (e.key === 'ArrowRight') {
-      showImage(currentIndex + 1, 1);
-    } else if (e.key === 'Escape') {
-      closeFullscreen();
-    }
-  });
-
-  // Swipe support on fullscreen image for mobile
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  fullscreenImage.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-
-  fullscreenImage.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleGesture();
-  });
-
-  function handleGesture() {
-    if (touchEndX < touchStartX - 40) {
-      showImage(currentIndex + 1, 1);
-    }
-    if (touchEndX > touchStartX + 40) {
-      showImage(currentIndex - 1, -1);
-    }
-  }
-
-  // Contact form submission to HubSpot
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    formStatus.textContent = '';
-    const name = contactForm.name.value.trim();
-    const email = contactForm.email.value.trim();
-    const phone = contactForm.phone.value.trim();
-    const message = contactForm.message.value.trim();
-
-    if (!name || !email || !message) {
-      formStatus.textContent = 'Please fill in all required fields.';
-      formStatus.style.color = 'var(--accent-color)';
-      return;
-    }
-
-    // Replace these placeholders with your HubSpot portal ID and form ID
-    const HUBSPOT_PORTAL_ID = 'YOUR_PORTAL_ID_HERE';
-    const HUBSPOT_FORM_ID = 'YOUR_FORM_ID_HERE';
-
-    const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
-    const data = {
-      fields: [
-        { name: 'firstname', value: name },
-        { name: 'email', value: email },
-        { name: 'phone', value: phone },
-        { name: 'message', value: message }
-      ],
-      context: {
-        pageUri: window.location.href,
-        pageName: document.title
-      }
-    };
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+    // Close mobile menu when clicking a link
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navMenu.classList.contains('open')) {
+          burger.setAttribute('aria-expanded', 'false');
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        }
       });
+    });
 
-      if (response.ok) {
-        formStatus.textContent = 'Thank you for your message! We will get back to you soon.';
-        formStatus.style.color = 'var(--primary-color)';
-        contactForm.reset();
-      } else {
-        throw new Error('Failed to submit form');
-      }
-    } catch (error) {
-      formStatus.textContent = 'Oops! Something went wrong. Please try again later.';
-      formStatus.style.color = 'var(--accent-color)';
-      console.error(error);
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Update focus for accessibility
+          target.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    // Fade-in/out effect on scroll for elements with 'fade-section'
+    const fadeSections = document.querySelectorAll('.fade-section');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    fadeSections.forEach(section => {
+      fadeObserver.observe(section);
+    });
+
+    // Gallery overlay functionality
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const galleryOverlay = document.getElementById('gallery-overlay');
+    const galleryImage = document.getElementById('gallery-fullscreen-img');
+    const galleryClose = document.getElementById('gallery-close');
+    const galleryPrev = document.getElementById('gallery-prev');
+    const galleryNext = document.getElementById('gallery-next');
+
+    let currentIndex = -1;
+    const galleryImages = Array.from(galleryGrid.querySelectorAll('img'));
+
+    function openGallery(index) {
+      currentIndex = index;
+      const img = galleryImages[currentIndex];
+      galleryImage.src = img.src.replace(/300x200/, '900x600'); // Load higher res if available
+      galleryImage.alt = img.alt;
+      galleryOverlay.classList.add('visible');
+      galleryOverlay.setAttribute('aria-hidden', 'false');
+      galleryOverlay.focus();
     }
+
+    function closeGallery() {
+      galleryOverlay.classList.remove('visible');
+      galleryOverlay.setAttribute('aria-hidden', 'true');
+      galleryImage.src = '';
+      currentIndex = -1;
+      // Return focus to last clicked thumbnail
+      if (currentIndex >= 0) {
+        galleryImages[currentIndex].focus();
+      }
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      const img = galleryImages[currentIndex];
+      galleryImage.src = img.src.replace(/300x200/, '900x600');
+      galleryImage.alt = img.alt;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      const img = galleryImages[currentIndex];
+      galleryImage.src = img.src.replace(/300x200/, '900x600');
+      galleryImage.alt = img.alt;
+    }
+
+    galleryImages.forEach((img, idx) => {
+      img.addEventListener('click', () => openGallery(idx));
+      img.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openGallery(idx);
+        }
+      });
+    });
+
+    galleryClose.addEventListener('click', closeGallery);
+
+    galleryPrev.addEventListener('click', showPrev);
+    galleryNext.addEventListener('click', showNext);
+
+    // Keyboard navigation for gallery overlay
+    galleryOverlay.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'Escape':
+          closeGallery();
+          break;
+        case 'ArrowLeft':
+          showPrev();
+          break;
+        case 'ArrowRight':
+          showNext();
+          break;
+      }
+    });
   });
 </script>
-
-</body>
-      </html>
+</html>
