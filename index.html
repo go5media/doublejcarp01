@@ -1,858 +1,463 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  >
 <head>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Double J Carpentry - Family-run carpentry business by Jimmy and Jay Scanlon. High-quality bespoke carpentry services including loft conversions, extensions, and general carpentry. Serving London, Surrey, and Kent.">
-  <title>Double J Carpentry</title>
-
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* CSS Reset/Normalize */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      line-height: 1.6;
-      background-color: var(--color-background);
-      color: var(--color-text);
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Base Variables for Color Scheme and Spacing */
-    :root {
-      --color-primary: hsl(25, 80%, 35%); /* Deep, rich forest orange */
-      --color-primary-dark: hsl(25, 90%, 25%);
-      --color-primary-light: hsl(25, 70%, 45%);
-      --color-secondary: hsl(0, 0%, 95%); /* Off-white for contrast */
-      --color-text: hsl(0, 0%, 15%);
-      --color-background: hsl(0, 0%, 100%);
-      --color-light-grey: hsl(0, 0%, 90%);
-      --color-dark-grey: hsl(0, 0%, 30%);
-
-      --spacing-unit: 8px;
-      --spacing-xs: calc(var(--spacing-unit) * 1);   /* 8px */
-      --spacing-sm: calc(var(--spacing-unit) * 2);   /* 16px */
-      --spacing-md: calc(var(--spacing-unit) * 4);   /* 32px */
-      --spacing-lg: calc(var(--spacing-unit) * 8);   /* 64px */
-      --spacing-xl: calc(var(--spacing-unit) * 12);  /* 96px */
-
-      --border-radius-sm: 4px;
-      --border-radius-md: 8px;
-
-      --header-height: 70px; /* Fixed header height */
-    }
-
-    /* CSS Snippet for Fade-in/Fade-out Animations */
-    .fade-in-section {
-      opacity: 0;
-      transition: opacity 1s ease-out; /* Only opacity, no vertical movement */
-      will-change: opacity;
-    }
-
-    .fade-in-section.is-visible {
-      opacity: 1;
-    }
-
-    /* Basic Container for Content Padding */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--spacing-md); /* Default padding for content area */
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: var(--spacing-sm);
-      }
-    }
-
-    /* Header Styles */
-    #main-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: var(--color-primary);
-      color: var(--color-secondary);
-      padding: var(--spacing-sm) var(--spacing-md);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      height: var(--header-height);
-      display: flex;
-      align-items: center;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .business-name {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: var(--color-secondary);
-    }
-
-    .main-nav .nav-list {
-      display: flex;
-      list-style: none;
-      gap: var(--spacing-md);
-    }
-
-    .main-nav .nav-list a {
-      color: var(--color-secondary);
-      font-weight: 600;
-      padding: var(--spacing-sm);
-      transition: color 0.3s ease;
-    }
-
-    .main-nav .nav-list a:hover,
-    .main-nav .nav-list a:focus {
-      color: var(--color-light-grey);
-    }
-
-    .burger-menu {
-      display: none; /* Hidden on desktop */
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: var(--spacing-sm);
-      position: relative;
-      z-index: 1100; /* Ensure it's above other content when open */
-    }
-
-    .burger-bar {
-      display: block;
-      width: 30px;
-      height: 3px;
-      background-color: var(--color-secondary);
-      margin: 6px 0;
-      transition: all 0.3s ease-in-out;
-    }
-
-    /* Burger menu animation to X */
-    .burger-menu.open .burger-bar:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
-    }
-
-    .burger-menu.open .burger-bar:nth-child(2) {
-      opacity: 0;
-    }
-
-    .burger-menu.open .burger-bar:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Mobile Navigation Styles */
-    @media (max-width: 768px) {
-      .business-name {
-        font-size: 1.5em;
-      }
-
-      .burger-menu {
-        display: block; /* Show burger on mobile */
-      }
-
-      .main-nav .nav-list {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Start off-screen */
-        width: 70%;
-        max-width: 300px;
-        height: 100vh;
-        background-color: var(--color-primary-dark);
-        flex-direction: column;
-        padding: var(--spacing-xl) var(--spacing-md);
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
-        transition: right 0.3s ease-in-out;
-        z-index: 1050;
-      }
-
-      .main-nav .nav-list.open {
-        right: 0; /* Slide in */
-      }
-
-      .main-nav .nav-list li {
-        margin-bottom: var(--spacing-md);
-        text-align: center;
-      }
-
-      .main-nav .nav-list a {
-        font-size: 1.2em;
-        display: block;
-        padding: var(--spacing-sm) 0;
-      }
-    }
-
-    /* Section Padding */
-    section {
-      padding-top: calc(var(--header-height) + var(--spacing-lg)); /* Account for fixed header */
-      padding-bottom: var(--spacing-lg);
-      min-height: 50vh; /* Ensure sections are tall enough for scroll effect */
-    }
-
-    section:nth-of-type(even) {
-      background-color: var(--color-light-grey);
-    }
-
-    section h2 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: var(--spacing-lg);
-      color: var(--color-primary-dark);
-    }
-
-    @media (max-width: 768px) {
-      section h2 {
-        font-size: 2em;
-      }
-    }
-
-    /* Services Section Styles */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--spacing-md);
-      padding: var(--spacing-sm);
-    }
-
-    .service-card {
-      background-color: var(--color-background);
-      padding: var(--spacing-md);
-      border-radius: var(--border-radius-md);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .service-card img {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto var(--spacing-sm);
-      border-radius: var(--border-radius-sm);
-      object-fit: cover;
-    }
-
-    .service-card h3 {
-      color: var(--color-primary);
-      margin-bottom: var(--spacing-sm);
-      font-size: 1.4em;
-    }
-
-    .service-card p {
-      font-size: 0.95em;
-      color: var(--color-text);
-    }
-
-    /* Gallery Section Styles */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: var(--spacing-sm);
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      height: 200px; /* Fixed height for consistency */
-      object-fit: cover;
-      cursor: pointer;
-      border-radius: var(--border-radius-sm);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease;
-    }
-
-    .gallery-grid img:hover {
-      transform: scale(1.02);
-    }
-
-    @media (max-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .gallery-grid img {
-        height: 150px;
-      }
-    }
-
-    /* Gallery Overlay Styles */
-    .gallery-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8); /* Greyed-out background */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .gallery-overlay.open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .overlay-content {
-      position: relative;
-      width: 90%;
-      max-width: 900px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .overlay-image {
-      max-width: 100%;
-      max-height: 80vh;
-      object-fit: contain;
-      border-radius: var(--border-radius-md);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease; /* For slide animation */
-    }
-
-    .overlay-close {
-      position: absolute;
-      top: var(--spacing-sm);
-      right: var(--spacing-sm);
-      background: none;
-      border: none;
-      color: var(--color-secondary);
-      font-size: 2.5em;
-      cursor: pointer;
-      padding: var(--spacing-sm);
-      z-index: 2010;
-    }
-
-    .overlay-nav {
-      position: absolute;
-      bottom: var(--spacing-sm);
-      background: rgba(0, 0, 0, 0.5);
-      color: var(--color-secondary);
-      border: none;
-      font-size: 2em;
-      padding: var(--spacing-sm);
-      cursor: pointer;
-      border-radius: var(--border-radius-md);
-      transition: background-color 0.3s ease;
-      z-index: 2005;
-    }
-
-    .overlay-nav:hover {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    .overlay-prev {
-      left: var(--spacing-md);
-    }
-
-    .overlay-next {
-      right: var(--spacing-md);
-    }
-
-    @media (max-width: 768px) {
-      .overlay-nav {
-        font-size: 1.5em;
-        padding: var(--spacing-xs);
-        bottom: var(--spacing-xs);
-      }
-    }
-
-
-    /* Contact Form Styles */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: var(--spacing-md);
-      background-color: var(--color-secondary);
-      border-radius: var(--border-radius-md);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-form label {
-      margin-bottom: var(--spacing-sm);
-      font-weight: 600;
-      color: var(--color-primary-dark);
-    }
-
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form input[type="tel"],
-    .contact-form textarea {
-      padding: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-      border: 1px solid var(--color-light-grey);
-      border-radius: var(--border-radius-sm);
-      font-size: 1em;
-      color: var(--color-text);
-    }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 2px rgba(var(--color-primary), 0.2);
-    }
-
-    .contact-form textarea {
-      resize: vertical;
-    }
-
-    .contact-form button {
-      background-color: var(--color-primary);
-      color: var(--color-secondary);
-      padding: var(--spacing-sm) var(--spacing-md);
-      border: none;
-      border-radius: var(--border-radius-sm);
-      cursor: pointer;
-      font-size: 1.1em;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-
-    .contact-form button:hover {
-      background-color: var(--color-primary-dark);
-    }
-
-    .contact-details {
-      text-align: center;
-      margin-top: var(--spacing-lg);
-      font-size: 1.1em;
-      color: var(--color-text);
-    }
-
-    .contact-details a {
-      color: var(--color-primary);
-      font-weight: 600;
-    }
-
-    .contact-details a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer Styles */
-    footer {
-      background-color: var(--color-dark-grey);
-      color: var(--color-secondary);
-      text-align: center;
-      padding: var(--spacing-md) 0;
-      margin-top: var(--spacing-lg);
-    }
-
-    /* Optional: Style to prevent body scroll when overlay/menu is open */
-    body.no-scroll {
-      overflow: hidden;
-    }
-  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v6.0.6, mobirise.com">
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image:src" content="https://p19-common-sign-useastred.tiktokcdn-eu.com/tos-useast2a-avt-0068-euttp/e1c928b92754c45664c3d3ea4e9c6b3c~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=839d0f1f&x-expires=1769457600&x-signature=JnO%2BNxdO1mRRBlY%2F3pvpHGoY2Pw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a">
+  <meta property="og:image" content="https://p19-common-sign-useastred.tiktokcdn-eu.com/tos-useast2a-avt-0068-euttp/e1c928b92754c45664c3d3ea4e9c6b3c~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=839d0f1f&x-expires=1769457600&x-signature=JnO%2BNxdO1mRRBlY%2F3pvpHGoY2Pw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a">
+  <meta name="twitter:title" content="Double Jay Carpentry | Loft Conversions, Extensions & Carpentry | London, Surrey & Kent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  
+  <meta name="description" content="Reliable loft conversions, extensions, and carpentry services across London, Surrey, and Kent. Free quotations and clear communication.">
+  
+  
+  <title>Double Jay Carpentry | Loft Conversions, Extensions & Carpentry | London, Surrey & Kent</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons/mobirise-icons.css">
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons-bold/mobirise-icons-bold.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=IHRPa8"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=IHRPa8" type="text/css">
+
+  
+  
+  
 </head>
 <body>
-  <header id="main-header">
-    <div class="container header-content">
-      <h1 class="business-name">Double J Carpentry</h1>
-      <nav class="main-nav">
-        <button class="burger-menu" aria-label="Toggle menu">
-          <span class="burger-bar"></span>
-          <span class="burger-bar"></span>
-          <span class="burger-bar"></span>
-        </button>
-        <ul class="nav-list">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="about" class="fade-in-section">
-      <div class="container">
-        <h2>About Double J Carpentry</h2>
-        <p>Welcome to Double J Carpentry, a family-run business passionately dedicated to crafting bespoke wooden solutions. Founded by father and son duo, **Jimmy and Jay Scanlon**, we bring generations of carpentry expertise and a shared commitment to quality and precision to every project. From custom furniture to intricate installations, we pride ourselves on delivering exceptional craftsmanship that truly transforms spaces. We believe in building lasting relationships with our clients, just as we build enduring pieces of carpentry.</p>
-        <p>Proudly serving **London, Surrey, and Kent**, we're ready to bring your vision to life with a comprehensive range of carpentry services.</p>
-      </div>
-    </section>
-
-    <section id="services" class="fade-in-section">
-      <div class="container">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=L" alt="Loft Conversion Icon">
-            <h3>Loft Conversions</h3>
-            <p>Transform your unused loft space into a valuable new room, tailored to your needs and seamlessly integrated into your home.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=E" alt="Extension Icon">
-            <h3>Extensions</h3>
-            <p>Expand your living area with expertly built extensions, adding space and value to your property.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=G" alt="Garage Conversion Icon">
-            <h3>Garage Conversions</h3>
-            <p>Convert your garage into a functional and stylish living space, whether it's an office, gym, or extra bedroom.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=C" alt="General Carpentry Icon">
-            <h3>General Carpentry</h3>
-            <p>From custom shelving to door fittings, we handle all aspects of general carpentry with precision and care.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=M" alt="Maintenance Icon">
-            <h3>Maintenance</h3>
-            <p>Reliable and efficient carpentry maintenance services to keep your property in top condition.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=R" alt="Refurbishment Icon">
-            <h3>Refurbishments</h3>
-            <p>Comprehensive carpentry services for refurbishing your home, bringing new life to old spaces.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=V" alt="Renovation Icon">
-            <h3>Renovations</h3>
-            <p>Complete carpentry solutions for large-scale home renovations, ensuring a high-quality finish.</p>
-          </div>
-          <div class="service-card">
-            <img src="https://via.placeholder.com/60x60/FF8C00/FFFFFF?text=Q" alt="Free Quotation Icon">
-            <h3>Free Quotations</h3>
-            <p>Contact us today for a no-obligation, free quotation on your next carpentry project.</p>
-          </div>
+  
+  <section data-bs-version="5.1" class="menu menu2 cid-sFCw1qGFAI" once="menu" id="menu2-23">
+    
+    <nav class="navbar navbar-dropdown navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+                
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7" href="https://mobiri.se">Double J Carpentry</a></span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="#top">Home</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#features1-1i">Services</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#header14-1j">About</a></li>
+                    <li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#content4-4">See Our Work</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="index.html#contacts2-1r">Contacts</a></li></ul>
+                
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="index.html#form5-1m">Get a Quote</a></div>
+            </div>
         </div>
-      </div>
-    </section>
+    </nav>
+</section>
 
-    <section id="gallery" class="fade-in-section">
-      <div class="container">
-        <h2>Our Work</h2>
-        <div class="gallery-grid">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+1" alt="Carpentry Project 1" data-index="0">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+2" alt="Carpentry Project 2" data-index="1">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+3" alt="Carpentry Project 3" data-index="2">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+4" alt="Carpentry Project 4" data-index="3">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+5" alt="Carpentry Project 5" data-index="4">
-          <img src="https://via.placeholder.com/600x400/FF8C00/FFFFFF?text=Project+6" alt="Carpentry Project 6" data-index="5">
-          </div>
-      </div>
+<section data-bs-version="5.1" class="header14 cid-sFzxmVl7J6 mbr-parallax-background" id="header14-1f">
 
-      <div class="gallery-overlay" style="display: none;">
-        <div class="overlay-content">
-          <img src="" alt="Gallery Image" class="overlay-image">
-          <button class="overlay-close" aria-label="Close image gallery">&times;</button>
-          <button class="overlay-nav overlay-prev" aria-label="Previous image">&#10094;</button>
-          <button class="overlay-nav overlay-next" aria-label="Next image">&#10095;</button>
-        </div>
-      </div>
-    </section>
+    
 
-    <section id="contact" class="fade-in-section">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <form class="contact-form" action="your_hubspot_form_handler_url" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(255, 255, 255);"></div>
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
-
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell us about your project..." required></textarea>
-
-          <input type="hidden" name="hs_context" value='{"hutk":"[HUBSPOT_UTK]","pageUrl":"[PAGE_URL]","pageName":"[PAGE_NAME]","legallyCompromised":"false"}'>
-          <input type="hidden" id="hubspot-portal-id" name="portalId" value="YOUR_HUBSPOT_PORTAL_ID">
-          <input type="hidden" id="hubspot-form-id" name="formId" value="YOUR_HUBSPOT_FORM_ID">
-
-          <button type="submit">Send Message</button>
-        </form>
-
-        <div class="contact-details">
-          <p>Email: <a href="mailto:info@doublejcarpentry.co.uk">info@doublejcarpentry.co.uk</a></p>
-          <p>Phone: <a href="tel:07952865108">07952 865 108</a></p>
-          <p>Serving: **London, Surrey, Kent**</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
     <div class="container">
-      <p>&copy; 2025 Double J Carpentry. All rights reserved.</p>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 image-wrapper">
+                <img src="assets/images/e1c928b92754c45664c3d3ea4e9c6b3ctplv-tiktokx-cropcenter-1080.jpeg" alt="Mobirise Website Builder">
+            </div>
+            <div class="col-12 col-md">
+                <div class="text-wrapper">
+                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>Double J Carpentry</strong></h1>
+                    <p class="mbr-text mbr-fonts-style display-7">Specialists in loft conversions, extensions, and carpentry across London, Surrey, and Kent.<br>From structural work to full refurbishments, Double J Carpentry delivers dependable workmanship and straightforward service, with free quotations and clear timelines.</p>
+                    <div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-4" href="index.html#content4-4">View Our Work</a>
+                        <a class="btn btn-primary display-4" href="index.html#form5-1m">Get a Quate</a></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
+</section>
 
-  <script>
-    // --- Burger Menu Toggle ---
-    const burgerMenu = document.querySelector('.burger-menu');
-    const navList = document.querySelector('.nav-list');
-    const navLinks = document.querySelectorAll('.nav-list a');
+<section data-bs-version="5.1" class="features1 cid-sFzyUE9AaP" id="features1-1i">
+    
 
-    function toggleMenu() {
-      burgerMenu.classList.toggle('open');
-      navList.classList.toggle('open');
-      document.body.classList.toggle('no-scroll'); // Optional: Prevent body scroll when menu is open
-    }
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                    <strong>Services</strong>
+                </h3>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-12 col-md-6 col-lg-3">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <div class="iconfont-wrapper">
+                            <span class="mbr-iconfont mbri-arrow-up"></span>
+                        </div>
+                        <h5 class="card-title mbr-fonts-style display-5"><strong>Loft &amp; Garage Conversions</strong></h5>
+                        <p class="card-text mbr-fonts-style display-7">Design-ready structural work to transform unused space into practical living areas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6 col-lg-3">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <div class="iconfont-wrapper">
+                            <span class="mbr-iconfont mobi-mbri-home mobi-mbri"></span>
+                        </div>
+                        <h5 class="card-title mbr-fonts-style display-5"><strong>Extensions &amp; Renovations</strong></h5>
+                        <p class="card-text mbr-fonts-style display-7">Structural builds, refurbishments, and carpentry for domestic extensions.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6 col-lg-3">
+                <div class="card-wrapper">
+                    <div class="card-box align-center">
+                        <div class="iconfont-wrapper">
+                            <span class="mbr-iconfont mbrib-setting3"></span>
+                        </div>
+                        <h5 class="card-title mbr-fonts-style display-5"><strong>Carpentry &amp; Maintenance</strong></h5>
+                        <p class="card-text mbr-fonts-style display-7">Bespoke carpentry, repairs, and ongoing maintenance work.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
 
-    burgerMenu.addEventListener('click', toggleMenu);
+<section data-bs-version="5.1" class="header14 cid-sFzz5E692j" id="header14-1j">
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (navList.classList.contains('open')) {
-          toggleMenu(); // Close menu on link click if it's open
-        }
-      });
-    });
+    
 
-    // --- Smooth Scroll for Internal Anchor Links ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // Prevent default jump behavior
+    
 
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        const headerOffset = document.querySelector('#main-header').offsetHeight; // Get header height
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset - 20; // Add some extra padding for spacing
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 image-wrapper">
+                <img src="assets/images/e1c928b92754c45664c3d3ea4e9c6b3ctplv-tiktokx-cropcenter-1080.jpeg" alt="Mobirise Website Builder">
+            </div>
+            <div class="col-12 col-md">
+                <div class="text-wrapper">
+                    <h1 class="mbr-section-title mbr-fonts-style mb-3 display-2"><strong>About Double J Carpentry</strong></h1>
+                    <p class="mbr-text mbr-fonts-style display-7">Double J Carpentry is a local building and carpentry company serving London, Surrey, and Kent.<br>We specialise in loft conversions, extensions, refurbishments, and general carpentry for domestic properties.<br><br>From initial structural work through to finishing details, we focus on clear communication, dependable workmanship, and practical solutions that suit each home. All projects are carried out with care, attention to detail, and a straightforward approach from start to finish.<br></p>
+                    <div class="mbr-section-btn mt-3"><a class="btn btn-primary display-4" href="index.html#content4-4">View Our Work</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      });
-    });
+<section data-bs-version="5.1" class="content4 cid-v9fKRFxztc" id="content4-4">
+    
 
-    // --- Fade-in/Fade-out Animations on Scroll ---
-    const fadeInSections = document.querySelectorAll('.fade-in-section');
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-md-12 col-lg-10">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+                    <strong>See Our Work</strong></h3>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
 
-    const observerOptions = {
-      root: null, // Use the viewport as the root
-      rootMargin: '0px',
-      threshold: 0.1 // Trigger when 10% of the element is visible
-    };
+<section data-bs-version="5.1" class="slider2 cid-v9fGg8vXI8" id="slider2-2">
+    
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          // Optional: If you only want it to animate once, uncomment the line below
-          // observer.unobserve(entry.target);
-        } else {
-          // Optional: If you want it to fade out when scrolling away
-          entry.target.classList.remove('is-visible');
-        }
-      });
-    }, observerOptions);
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="carousel slide carousel-fade" id="v9guAzsJqo" data-ride="carousel" data-bs-ride="carousel" data-interval="5000" data-bs-interval="5000">
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-bs-slide-to="0" class="active" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="1" data-bs-slide-to="1" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="2" data-bs-slide-to="2" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="3" data-bs-slide-to="3" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="4" data-bs-slide-to="4" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="5" data-bs-slide-to="5" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="6" data-bs-slide-to="6" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="7" data-bs-slide-to="7" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="8" data-bs-slide-to="8" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="9" data-bs-slide-to="9" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="10" data-bs-slide-to="10" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="11" data-bs-slide-to="11" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li><li data-slide-to="12" data-bs-slide-to="12" class="" data-target="#v9guAzsJqo" data-bs-target="#v9guAzsJqo"></li>
+                        
+                        
+                    </ol>
+                    <div class="carousel-inner">
+                        
+                        
+                        <div class="carousel-item slider-image item active">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409065933-671018695102246-4130586875461022549-n-1.jpg" alt="Mobirise Website Builder" data-slide-to="0" data-bs-slide-to="0">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409065933-671018695102246-4130586875461022549-n.jpg" alt="Mobirise Website Builder" data-slide-to="1" data-bs-slide-to="1">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/408604408-3558082101096432-4068529178769555864-n.jpg" alt="Mobirise Website Builder" data-slide-to="2" data-bs-slide-to="2">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409408645-333923362918895-2028066158723282669-n.jpg" alt="Mobirise Website Builder" data-slide-to="3" data-bs-slide-to="3">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409216975-891618418843846-4007062963494930600-n.jpg" alt="Mobirise Website Builder" data-slide-to="4" data-bs-slide-to="4">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409567644-670261441925525-8022577575013997516-n.jpg" alt="Mobirise Website Builder" data-slide-to="5" data-bs-slide-to="5">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/408767567-385191427186007-7071563685092431567-n.jpg" alt="Mobirise Website Builder" data-slide-to="6" data-bs-slide-to="6">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/409203945-1544868183010856-9212189074836856569-n.jpg" alt="Mobirise Website Builder" data-slide-to="7" data-bs-slide-to="7">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/514950464-17936250753025132-5338649428311341496-n.jpg" alt="Mobirise Website Builder" data-slide-to="8" data-bs-slide-to="8">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/509680609-17936250621025132-5461240580114625819-n.jpg" alt="Mobirise Website Builder" data-slide-to="9" data-bs-slide-to="9">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/504001688-17936250609025132-5965577515151330844-n.jpg" alt="Mobirise Website Builder" data-slide-to="10" data-bs-slide-to="10">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/503994565-17936250588025132-6116063937914910402-n.jpg" alt="Mobirise Website Builder" data-slide-to="11" data-bs-slide-to="11">
+                                
+                            </div>
+                        </div><div class="carousel-item slider-image item">
+                            <div class="item-wrapper">
+                                
+                                <img class="d-block w-100" src="assets/images/608643819-17955398664025132-6657782931076889571-n.jpg" alt="Mobirise Website Builder" data-slide-to="12" data-bs-slide-to="12">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control carousel-control-prev" role="button" data-slide="prev" data-bs-slide="prev" href="#v9guAzsJqo">
+                        <span class="mobi-mbri mobi-mbri-arrow-prev" aria-hidden="true"></span>
+                        <span class="sr-only visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control carousel-control-next" role="button" data-slide="next" data-bs-slide="next" href="#v9guAzsJqo">
+                        <span class="mobi-mbri mobi-mbri-arrow-next" aria-hidden="true"></span>
+                        <span class="sr-only visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    fadeInSections.forEach(section => {
-      sectionObserver.observe(section);
-    });
+<section data-bs-version="5.1" class="content10 cid-sFAZRnJnnI" id="content10-22">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md">
+                
+                <h6 class="mbr-section-subtitle mbr-fonts-style mb-4 display-2"><strong>Why Clients Choose Us</strong></h6>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <p class="mbr-text mbr-fonts-style display-7">Home improvement projects require trust, clear communication, and dependable workmanship.<br><br>At Double J Carpentry, we focus on doing the job properly from the start, keeping clients informed throughout the build, and delivering work that stands up over time. From initial consultation to completion, we offer a straightforward, reliable service with free quotations and no unnecessary complications.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    // --- Gallery Functionality ---
-    const galleryImages = document.querySelectorAll('.gallery-grid img');
-    const galleryOverlay = document.querySelector('.gallery-overlay');
-    const overlayImage = document.querySelector('.overlay-image');
-    const overlayCloseBtn = document.querySelector('.overlay-close');
-    const overlayPrevBtn = document.querySelector('.overlay-prev');
-    const overlayNextBtn = document.querySelector('.overlay-next');
+<section data-bs-version="5.1" class="contacts4 cid-sFAyMcKwph" id="contacts4-21">
 
-    let currentImageIndex = 0;
-    let images = []; // Store image sources for navigation
+    
 
-    // Populate images array and add click listeners
-    galleryImages.forEach((img, index) => {
-      images.push(img.src);
-      img.addEventListener('click', () => {
-        currentImageIndex = index;
-        openGallery(img.src);
-      });
-    });
+    
 
-    function openGallery(src) {
-      overlayImage.src = src;
-      galleryOverlay.classList.add('open');
-      document.body.classList.add('no-scroll'); // Prevent body scroll
-      addGalleryEventListeners();
-    }
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="text-content col-12 col-md-6">
+                <h2 class="mbr-section-title mbr-fonts-style display-2">
+                    <strong>Follow Us</strong>
+                </h2>
+                <p class="mbr-text mbr-fonts-style display-7">We regularly share photos and updates from ongoing projects, including loft conversions, structural work, and refurbishments.<br>Follow us on Instagram to see real work in progress and completed builds across London, Surrey, and Kent.<br></p>
+            </div>
+            <div class="icons d-flex align-items-center col-12 col-md-6 justify-content-end mt-md-0 mt-2 flex-wrap">
+                <a href="https://www.instagram.com/double.j.carpentry/" target="_blank">
+                    <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
+                </a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
 
-    function closeGallery() {
-      galleryOverlay.classList.remove('open');
-      document.body.classList.remove('no-scroll');
-      removeGalleryEventListeners();
-    }
+<section data-bs-version="5.1" class="form5 cid-sFzDs3t9EG" id="form5-1m">
+    
+    
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Get a Quote</strong></h3>
+            
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form action="https://mobirise.eu/" method="POST" class="mbr-form form-with-styler" data-form-title="Form Name"><input type="hidden" name="email" data-form-email="true" value="ZohoaFQSYMF1hHVmK/tLbNwbu+V3xaYGgwpFtkPDkEbzx8RlKSAwA188DWhDLBaPxFw5Zgha2kTOjQXXO049D8LgHmg+1ZJ1RN3SJ1RDhwPTrO88dXoOEwv5yzdq/Hes">
+                    <div class="row">
+                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out
+                            the form!</div>
+                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">Oops...! some
+                            problem!</div>
+                    </div>
+                    <div class="dragArea row">
+                        <div class="col-md col-sm-12 form-group mb-3" data-for="name">
+                            <input type="text" name="name" placeholder="Name" data-form-field="name" class="form-control" value="" id="name-form5-1m">
+                        </div>
+                        <div class="col-md col-sm-12 form-group mb-3" data-for="email">
+                            <input type="email" name="email" placeholder="E-mail" data-form-field="email" class="form-control" value="" id="email-form5-1m">
+                        </div>
+                        
+                        <div class="col-12 form-group mb-3" data-for="textarea">
+                            <textarea name="textarea" placeholder="Message" data-form-field="textarea" class="form-control" id="textarea-form5-1m"></textarea>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn"><button type="submit" class="btn btn-primary display-4">Send message</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
-    function showImage(index, direction = 'next') {
-      // Loop infinitely
-      if (index < 0) {
-        currentImageIndex = images.length - 1;
-      } else if (index >= images.length) {
-        currentImageIndex = 0;
-      } else {
-        currentImageIndex = index;
-      }
+<section data-bs-version="5.1" class="contacts2 cid-sFzIA7KGYz" id="contacts2-1r">
+    <!---->
+    
+    
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Contacts</strong>
+            </h3>
+            
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Phone</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7">Office: <a href="tel:+443305202002" class="text-primary">0330 520 2002</a>&nbsp;<br></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <div class="image-wrapper">
+                        <span class="mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+                    </div>
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <strong>Email</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style display-7"><a href="mailto:info@doublejcarpentry.co.uk" class="text-primary">info@doublejcarpentry.co.uk</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</section>
 
-      // Apply sliding animation by temporarily adjusting transform and then resetting
-      overlayImage.style.transition = 'none'; // Disable transition for immediate jump
-      if (direction === 'next') {
-        overlayImage.style.transform = 'translateX(100%)';
-      } else {
-        overlayImage.style.transform = 'translateX(-100%)';
-      }
+<section data-bs-version="5.1" class="footer3 cid-sFCygHrmNf" once="footers" id="footer3-24">
 
-      setTimeout(() => {
-        overlayImage.src = images[currentImageIndex];
-        overlayImage.style.transition = 'transform 0.3s ease-out'; // Re-enable transition for slide-in
-        overlayImage.style.transform = 'translateX(0)';
-      }, 50); // Small delay to allow transform to register before changing src
-    }
+    
 
-    function navigatePrev() {
-      showImage(currentImageIndex - 1, 'prev');
-    }
+    
 
-    function navigateNext() {
-      showImage(currentImageIndex + 1, 'next');
-    }
-
-    // Swipe gesture variables
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    function handleTouchStart(e) {
-      touchStartX = e.touches[0].clientX;
-    }
-
-    function handleTouchMove(e) {
-      touchEndX = e.touches[0].clientX;
-    }
-
-    function handleTouchEnd() {
-      if (touchStartX - touchEndX > 50) { // Swipe left
-        navigateNext();
-      }
-      if (touchEndX - touchStartX > 50) { // Swipe right
-        navigatePrev();
-      }
-      touchStartX = 0;
-      touchEndX = 0;
-    }
-
-    function addGalleryEventListeners() {
-      overlayCloseBtn.addEventListener('click', closeGallery);
-      overlayPrevBtn.addEventListener('click', navigatePrev);
-      overlayNextBtn.addEventListener('click', navigateNext);
-      galleryOverlay.addEventListener('click', handleOverlayClick);
-      document.addEventListener('keydown', handleKeyPress);
-
-      // Add touch event listeners for swipe gestures
-      galleryOverlay.addEventListener('touchstart', handleTouchStart);
-      galleryOverlay.addEventListener('touchmove', handleTouchMove);
-      galleryOverlay.addEventListener('touchend', handleTouchEnd);
-    }
-
-    function removeGalleryEventListeners() {
-      overlayCloseBtn.removeEventListener('click', closeGallery);
-      overlayPrevBtn.removeEventListener('click', navigatePrev);
-      overlayNextBtn.removeEventListener('click', navigateNext);
-      galleryOverlay.removeEventListener('click', handleOverlayClick);
-      document.removeEventListener('keydown', handleKeyPress);
-
-      // Remove touch event listeners
-      galleryOverlay.removeEventListener('touchstart', handleTouchStart);
-      galleryOverlay.removeEventListener('touchmove', handleTouchMove);
-      galleryOverlay.removeEventListener('touchend', handleTouchEnd);
-    }
-
-    function handleOverlayClick(e) {
-      // Close overlay if click is directly on the overlay background, not the image or buttons
-      if (e.target === galleryOverlay) {
-        closeGallery();
-      }
-    }
-
-    function handleKeyPress(e) {
-      if (galleryOverlay.classList.contains('open')) {
-        if (e.key === 'Escape') {
-          closeGallery();
-        } else if (e.key === 'ArrowLeft') {
-          navigatePrev();
-        } else if (e.key === 'ArrowRight') {
-          navigateNext();
-        }
-      }
-    }
-
-    // HubSpot Form Submission (Placeholder)
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission
-
-        // In a real application, you would collect form data and send it to HubSpot
-        // using their API or an AJAX request.
-        // Example (conceptual):
-        // const formData = new FormData(contactForm);
-        // fetch('YOUR_HUBSPOT_FORM_SUBMISSION_ENDPOINT', {
-        //   method: 'POST',
-        //   body: formData,
-        //   headers: {
-        //     'Content-Type': 'application/x-www-form-urlencoded' // Or 'application/json' if using JSON
-        //   }
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //   console.log('HubSpot submission successful:', data);
-        //   alert('Thank you for your message! We will get back to you shortly.');
-        //   contactForm.reset();
-        // })
-        // .catch(error => {
-        //   console.error('HubSpot submission error:', error);
-        //   alert('There was an error sending your message. Please try again.');
-        // });
-
-        console.log('Form submission intercepted. Placeholder for HubSpot integration.');
-        alert('Thank you for your message! (Form submission is a placeholder for HubSpot integration)');
-        contactForm.reset();
-      });
-    }
-
-  </script>
+    <div class="container">
+        <div class="row align-center mbr-white">
+            <div class="row row-links">
+                <ul class="foot-menu">
+                    
+                    
+                    
+                    
+                    
+                <li class="foot-menu-item mbr-fonts-style display-7"><a href="#top" class="text-white">Home</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#features1-1i" class="text-white">Services</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#header14-1j" class="text-white">About</a></li><li class="foot-menu-item mbr-fonts-style display-7"><a href="index.html#content4-4" class="text-white text-primary">See Our Work</a></li></ul>
+            </div>
+            <div class="row social-row">
+                <div class="social-list align-right pb-2">
+                    
+                    
+                    
+                    
+                    
+                    
+                <div class="soc-item">
+                        <a href="https://www.instagram.com/double.j.carpentry/" target="_blank">
+                            <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
+                        </a>
+                    </div></div>
+            </div>
+            <div class="row row-copirayt">
+                <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
+                    © Copyright 2025 Double J Carpentry. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/sociallikes/social-likes.js"></script>  <script src="assets/theme/js/script.js"></script>  <script src="assets/formoid/formoid.min.js"></script>  
+  
+  
 </body>
 </html>
